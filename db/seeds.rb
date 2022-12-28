@@ -9,7 +9,7 @@
 ApplicationRecord.transaction do
     # These `destroy_all` commands are not necessary if you use `rails
     # db:seed:replant`
-    puts 'Destroying tables...'
+    puts "Destroying tables..."
     User.destroy_all
     Post.destroy_all
     Comment.destroy_all
@@ -18,23 +18,32 @@ ApplicationRecord.transaction do
   
     # Reset the id (i.e., primary key) counters for each table to start at 1
     # (helpful for debugging)
-    puts 'Resetting id sequences...'
+    puts "Resetting id sequences..."
     %w(users posts comments reactions follows).each do |table_name|
       ApplicationRecord.connection.reset_pk_sequence!(table_name)
     end
   
     # Create seed data
-    puts 'Seeding the DB...'
+    puts "Seeding the DB..."
 
-    puts 'Creating users...'
-    matthew = User.create!(username: 'birdwatcher', password_digest: "whatever", session_token: "1", name: "Matthew Goodpub", email: "matthew@gmail.com", bio: "I love bird watching")
-    diego = User.create!(username: 'dsnovaes', password_digest: "whatever", session_token: "2", name: "Diego Novaes", email: "dsnovaes1@gmail.com", bio: "Founder of BubbleGram")
-    elon = User.create!(username: 'elonmusk', password_digest: "whatever", session_token: "3", name: "Elon Musk", email: "elon@tesla.com", bio: "I might buy BubbleGram")
+    puts "Creating users..."
+
+
+    User.create!(
+        username: "Demo-lition", 
+        email: "demo@user.io", 
+        password: "password",
+        name: "Demo User"
+    )
+
+    matthew = User.create!(username: "birdwatcher", password_digest: "whatever", session_token: "1", name: "Matthew Goodpub", email: "matthew@gmail.com", bio: "I love bird watching")
+    diego = User.create!(username: "dsnovaes", password_digest: "whatever", session_token: "2", name: "Diego Novaes", email: "dsnovaes1@gmail.com", bio: "Founder of BubbleGram")
+    elon = User.create!(username: "elonmusk", password_digest: "whatever", session_token: "3", name: "Elon Musk", email: "elon@tesla.com", bio: "I might buy BubbleGram")
     disnee = User.create!(username: "disney", password_digest: "whatever", session_token: "4", name: "Disney World", email: "disnee@appacademy.io", bio: "", private_profile: true)
     coding_memes = User.create!(username: "coding_memes", password_digest: "whatever", session_token: "5", name: "Coding Memes", email: "codingmemes@appacademy.io", bio: "The best coding memes")
     john_mayer = User.create!(username: "johnmayer", password_digest: "whatever", session_token: "6", name: "John Mayer", email: "johnmayer@appacademy.io", bio: "Singer, songwriter, and guitarist")
 
-    puts 'Creating posts'
+    puts "Creating posts"
     post1_matthew = Post.create!(user_id: matthew.id)
     post2_matthew = Post.create!(user_id: matthew.id)
     post3_matthew = Post.create!(user_id: matthew.id)
@@ -64,7 +73,7 @@ ApplicationRecord.transaction do
     post14_coding_memes = Post.create!(user_id: coding_memes.id)
     post15_coding_memes = Post.create!(user_id: coding_memes.id)
     
-    puts 'Creating following relations'
+    puts "Creating following relations"
     Follow.create!(follower_id: 1, following_id: diego.id, status: "accepted")
     Follow.create!(follower_id: 1, following_id: elon.id, status: "accepted")
     Follow.create!(follower_id: 1, following_id: coding_memes.id, status: "accepted")
@@ -78,7 +87,7 @@ ApplicationRecord.transaction do
     Follow.create!(follower_id: 4, following_id: matthew.id, status: "accepted")
     Follow.create!(follower_id: 4, following_id: diego.id, status: "accepted")
 
-    puts 'Creating comments'
+    puts "Creating comments"
     [post1_matthew.id, post2_matthew.id, post3_matthew.id].each do |post|
         Comment.create!(post_id: post, user_id: elon.id, body: "Watch this bird: twitter.com")
     end
@@ -116,7 +125,7 @@ ApplicationRecord.transaction do
 
     Comment.create!(post_id: post1_john.id, user_id: diego.id, body: "Awesome!")
 
-    puts 'Creating reactions'
+    puts "Creating reactions"
     [
         post1_coding_memes.id, 
         post2_coding_memes.id, 
@@ -141,5 +150,5 @@ ApplicationRecord.transaction do
 
     end
 
-    puts 'Done!'
+    puts "Done!"
   end
