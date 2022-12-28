@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   
   # root "articles#index"
 
-  post 'api/test', to: 'application#test'
-
   namespace :api, defaults: { format: :json } do
     resources :follows, only: [:create, :destroy, :update]
     resources :reactions, only: [:create, :destroy, :update]
