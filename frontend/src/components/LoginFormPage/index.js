@@ -41,7 +41,7 @@ const LoginFormPage = () => {
                 <ul>
                     {errors.map(error => <li key={error}>{error}</li>)}
                 </ul>
-                <label>Username
+                <label>Email or Username
                     <input type="text" name="credential" value={credential} onChange={(e) => setCredential(e.target.value)} placeholder="Email or Username" required />
                 </label>
                 <label>Password
