@@ -14,7 +14,7 @@ const LoginFormPage = () => {
     if (sessionUser) return <Redirect to="/" />;
 
     const handleDemoLogin = (e) => {
-        return dispatch(sessionActions.login({email: "demo@user.io", password: "password"}))
+        return dispatch(sessionActions.login({credential: "demo@user.io", password: "password"}))
     }
 
     const handleSubmit = (e) => {
@@ -45,7 +45,7 @@ const LoginFormPage = () => {
                     <input type="text" name="credential" value={credential} onChange={(e) => setCredential(e.target.value)} placeholder="Email or Username" required />
                 </label>
                 <label>Password
-                    <input type="password" name="password" value={password} onChange={(e) => setCredential(e.target.value)} placeholder="Password" required />
+                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
                 </label>
                 <button>Login</button>
             </form>
