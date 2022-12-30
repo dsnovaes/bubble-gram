@@ -11,9 +11,6 @@ function App() {
     <>
       <Navigation />
         <Switch>
-          <Route path="/settings">
-            <Settings />
-          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

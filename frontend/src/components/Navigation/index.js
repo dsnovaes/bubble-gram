@@ -12,7 +12,6 @@ function Navigation() {
     sessionLinks = (
       <>
         <ProfileButton user={sessionUser} />
-        <NavLink exact to="/settings">Settings</NavLink>
       </>
     );
   } else {

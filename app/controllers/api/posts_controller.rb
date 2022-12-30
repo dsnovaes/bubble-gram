@@ -6,21 +6,32 @@ class Api::PostsController < ApplicationController
         @posts = Post.all # filter only those from public profiles
     end
 
-    def update
+    def show
         @post = Post.find(params[:id])
-        if @post.update(post_params)
+        # create logic to only show a post from a private profile if the current_user follows the user_id of the post
+        if @post
+            render :show
+        else
+            render json: { errors: @post.errors.full_messages }, status: 404
+        end
+    end
+
+    def create 
+        @post = Post.new(post_params)
+        @post.user_id = current_user.id
+        if @post.save!
             render :show
         else
             render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
-    def show
+    def update
         @post = Post.find(params[:id])
-        if @post
+        if @post.update(post_params)
             render :show
         else
-            render json: { errors: @post.errors.full_messages }, status: 404
+            render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
