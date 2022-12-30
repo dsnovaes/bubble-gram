@@ -48,11 +48,6 @@ export const restoreSession = () => async dispatch => {
 
 export const signup = (user) => async (dispatch) => {
     let { username, email, password, name, bio, private_profile } = user;
-    if (private_profile === "true") { 
-        private_profile = true;
-    } else {
-        private_profile = false;
-    }
     const response = await csrfFetch("/api/users", {
         method: "POST",
         body: JSON.stringify({

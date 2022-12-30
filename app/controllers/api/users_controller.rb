@@ -18,8 +18,9 @@ class Api::UsersController < ApplicationController
     end
 
     def create
-        
         @user = User.new(user_params)
+        @user.private_profile = true if params[:private_profile] == "true"
+        @user.bio = nil if @user.bio == ""
         if @user.save!
             login!(@user)
             render :show

@@ -1,0 +1,123 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* left */
+
+.devices {
+    background: url(../../assets/devices.png) center center no-repeat;
+    background-size: cover;
+}
+
+
+/* right */
+
+.login {
+    width: 100vw;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.loginOrSignUp {
+    padding: calc(var(--base-unit) * 10);
+    background-color: var(--color-secondary-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    text-align: center;
+    margin-bottom: calc(var(--base-unit) * 4);
+}
+.loginOrSignUp input, .loginOrSignUp textarea {
+    background-color: var(--color-primary-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--base-unit);
+    padding: calc(var(--base-unit)*4);
+    width: -webkit-fill-available;
+    margin-bottom: calc(var(--base-unit)*4);
+    color: var(--color-primary-font);
+    transition: 0.25s all;
+    font-family: var(--font-family);
+}
+.loginOrSignUp input:focus, .loginOrSignUp textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-font);
+    transition: 0.25s all;
+}
+.loginOrSignUp label {
+    display: none;
+}
+.loginOrSignUp svg {
+    margin-bottom: calc(var(--base-unit) * 8);
+}
+.loginOrSignUp button {
+    color: #fff;
+    background-color: var(--color-link);
+    border:0;
+    font-weight: bold;
+    padding: calc(var(--base-unit)*3);
+    border-radius: calc(var(--base-unit)*3);
+    width: -webkit-fill-available;
+    margin-bottom: calc(var(--base-unit)*4);
+    transition: 0.25s all;
+}
+.loginOrSignUp button:hover {
+    opacity: 0.8;
+    transition: 0.25s all;
+}
+.loginOrSignUp p.or {
+    color: var(--color-secondary-font);
+    margin-bottom: calc(var(--base-unit)*4);
+    padding: calc(var(--base-unit)*3) 0;
+}
+.loginOrSignUp  p.or small {
+    background-color: var(--color-secondary-bg);
+    font-weight: bold;
+    font-size: 80%;
+    padding: 0 calc(var(--base-unit)*6);
+}
+.loginOrSignUp  p.or span {
+    border-top: 1px solid var(--color-border);
+    display: block;
+    height: 1px;
+    margin-bottom: -10px;
+}
+.loginOrSignUp button.demoButton {
+    background-color: var(--color-secondary-bg);
+    color: var(--color-link);
+    border:2px solid  var(--color-border);
+    font-weight: bold;
+}
+.loginOrSignUp button.demoButton:hover {
+    color: var(--color-secondary-font);
+    opacity: 1;
+    border-color: var(--color-secondary-font);
+    /* background-color: var(--color-border); */
+}
+.loginOrSignUp a {
+    color: var(--color-link);
+    font-weight: bold;
+}
+.loginOrSignUp a:hover {
+    text-decoration: underline;
+}
+
+.signup {
+    width: 100vw;
+    max-width: 400px;
+}
+.signup .loginOrSignUp label {
+    display: flex;
+    text-align: left;
+}
+.signup .loginOrSignUp input[type="checkbox"] {
+    width: auto;
+    margin-right: calc(var(--base-unit)*3);
+}
+.loginOrSignUp label em {
+    font-style: italic;
+    font-size: 80%;
+    opacity: 0.5;
+}
