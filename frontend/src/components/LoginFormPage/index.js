@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
+import deviceImg from "../../assets/screenshot1-2x.png"
 
 const LoginFormPage = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const LoginFormPage = () => {
         <div className="container">
             <section className="login">
                 <div className="devices">
+                    <img src={deviceImg} height="490" alt="screenshot " />
                 </div>
                 <div>
                     <div className="loginOrSignUp">

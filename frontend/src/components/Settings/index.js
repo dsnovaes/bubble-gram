@@ -1,27 +1,22 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 function Settings() {
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
   if (sessionUser) {
-    sessionLinks = (
-      <p>Logged in</p>
+    return (
+      <>
+          <p>Settings for {sessionUser.username}</p>
+      </>
     );
   } else {
-    sessionLinks = (
-        <p>Logged out</p>
-    );
+    return <Redirect to="/" />;
   }
 
-  return (
-    <>
-        <p>Settings for {sessionUser.username}</p>
-        {sessionLinks}
-    </>
-  );
+
 }
 
 export default Settings;

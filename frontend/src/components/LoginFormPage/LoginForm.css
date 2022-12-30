@@ -11,8 +11,13 @@
 .devices {
     background: url(../../assets/devices.png) center center no-repeat;
     background-size: cover;
+    position: relative;
 }
-
+.devices img {
+    position: absolute;
+    right: 43px;
+    bottom: 63px;
+}
 
 /* right */
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { FaUserAlt } from 'react-icons/fa'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <i className="fa-solid fa-user-circle" /> Menu
+        <FaUserAlt /> Menu
       </button>
       {showMenu && (
         <ul className="profile-dropdown">

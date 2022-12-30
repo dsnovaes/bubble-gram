@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "react-icons": "^4.7.1",
     "redux-logger": "^3.0.6"
   },
   "proxy": "http://localhost:5000"
