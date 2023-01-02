@@ -4,6 +4,7 @@ class Api::ReactionsController < ApplicationController
 
     def create
         @reaction = Reaction.new(reaction_params)
+        @reaction.user_id = current_user.id
         if @reaction.save!
             render :show
         else

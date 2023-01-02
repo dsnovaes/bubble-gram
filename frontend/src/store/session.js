@@ -65,6 +65,24 @@ export const signup = (user) => async (dispatch) => {
     return response;
 };
 
+export const update = (user) => async (dispatch) => {
+    let { username, email, password, name, bio, private_profile } = user;
+    const response = await csrfFetch("/api/users", {
+        method: "PUT",
+        body: JSON.stringify({
+            username,
+            email,
+            name,
+            password,
+            bio,
+            private_profile
+        })
+    });
+    const data = await response.json();
+    dispatch(setCurrentUser(data.user));
+    return response;
+};
+
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch("/api/session", {
         method: "DELETE"

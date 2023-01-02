@@ -3,10 +3,7 @@ class Api::FollowsController < ApplicationController
     before_action :require_logged_in
 
     def create
-        # create logic to set id of follower to current_user.id
-        # follower_id = current_user.id
-        follower_id = follow_params[:follower_id]
-        check_if_exists = Follow.find_by(follower_id: follower_id, following_id: follow_params[:following_id])
+        check_if_exists = Follow.find_by(follower_id: current_user.id, following_id: follow_params[:following_id])
 
         case check_if_exists&.status
         when "blocked"
