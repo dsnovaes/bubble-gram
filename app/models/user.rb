@@ -39,12 +39,12 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         dependent: :destroy
 
-    has_many :followers,
+    has_many :followers, -> { where status: "accepted" },
         class_name: :Follow,
         foreign_key: :following_id,
         dependent: :destroy
 
-    has_many :following,
+    has_many :following, -> { where status: "accepted" },
         class_name: :Follow,
         foreign_key: :follower_id,
         dependent: :destroy

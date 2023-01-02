@@ -10,11 +10,11 @@ ApplicationRecord.transaction do
     # These `destroy_all` commands are not necessary if you use `rails
     # db:seed:replant`
     puts "Destroying tables..."
-    User.destroy_all
     Post.destroy_all
     Comment.destroy_all
     Reaction.destroy_all
     Follow.destroy_all
+    User.destroy_all
   
     # Reset the id (i.e., primary key) counters for each table to start at 1
     # (helpful for debugging)
@@ -36,12 +36,12 @@ ApplicationRecord.transaction do
         name: "Demo User"
     )
 
-    matthew = User.create!(username: "birdwatcher", password_digest: "whatever", session_token: "1", name: "Matthew Goodpub", email: "matthew@gmail.com", bio: "I love bird watching")
-    diego = User.create!(username: "dsnovaes", password_digest: "whatever", session_token: "2", name: "Diego Novaes", email: "dsnovaes1@gmail.com", bio: "Founder of BubbleGram")
-    elon = User.create!(username: "elonmusk", password_digest: "whatever", session_token: "3", name: "Elon Musk", email: "elon@tesla.com", bio: "I might buy BubbleGram")
-    disnee = User.create!(username: "disney", password_digest: "whatever", session_token: "4", name: "Disney World", email: "disnee@appacademy.io", bio: "", private_profile: true)
-    coding_memes = User.create!(username: "coding_memes", password_digest: "whatever", session_token: "5", name: "Coding Memes", email: "codingmemes@appacademy.io", bio: "The best coding memes")
-    john_mayer = User.create!(username: "johnmayer", password_digest: "whatever", session_token: "6", name: "John Mayer", email: "johnmayer@appacademy.io", bio: "Singer, songwriter, and guitarist")
+    matthew = User.create!(username: "birdwatcher", password: "whatever", name: "Matthew Goodpub", email: "matthew@gmail.com", bio: "I love bird watching")
+    diego = User.create!(username: "dsnovaes", password: "whatever", name: "Diego Novaes", email: "dsnovaes1@gmail.com", bio: "Founder of BubbleGram")
+    elon = User.create!(username: "elonmusk", password: "whatever", name: "Elon Musk", email: "elon@tesla.com", bio: "I might buy BubbleGram")
+    disnee = User.create!(username: "disney", password: "whatever", name: "Disney World", email: "disnee@appacademy.io", bio: "", private_profile: true)
+    coding_memes = User.create!(username: "coding_memes", password: "whatever", name: "Coding Memes", email: "codingmemes@appacademy.io", bio: "The best coding memes")
+    john_mayer = User.create!(username: "johnmayer", password: "whatever", name: "John Mayer", email: "johnmayer@appacademy.io", bio: "Singer, songwriter, and guitarist")
 
     puts "Creating posts"
     post1_matthew = Post.create!(user_id: matthew.id)
@@ -72,6 +72,8 @@ ApplicationRecord.transaction do
     post13_coding_memes = Post.create!(user_id: coding_memes.id)
     post14_coding_memes = Post.create!(user_id: coding_memes.id)
     post15_coding_memes = Post.create!(user_id: coding_memes.id)
+
+    post1_disney = Post.create!(caption: "This is a protected post, because the user has a private profile", user_id: disnee.id)
     
     puts "Creating following relations"
     Follow.create!(follower_id: 1, following_id: diego.id, status: "accepted")
@@ -84,6 +86,7 @@ ApplicationRecord.transaction do
     Follow.create!(follower_id: 2, following_id: john_mayer.id, status: "accepted")
     Follow.create!(follower_id: 3, following_id: coding_memes.id, status: "accepted")
     Follow.create!(follower_id: 3, following_id: john_mayer.id, status: "accepted")
+    Follow.create!(follower_id: diego.id, following_id: disnee.id, status: "accepted")
     Follow.create!(follower_id: 4, following_id: matthew.id, status: "accepted")
     Follow.create!(follower_id: 4, following_id: diego.id, status: "accepted")
 

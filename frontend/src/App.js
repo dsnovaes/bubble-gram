@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { useSelector } from 'react-redux';
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
-import Settings from "./components/Settings"
+import Explore from "./components/Explore";
+import ShowPage from "./components/ShowPage"
 
 function App() {
   return (
@@ -16,6 +16,12 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/posts">
+            <Explore />
+          </Route>
+          <Route path="/posts/:postId">
+            <ShowPage />
           </Route>
         </Switch>
     </>
