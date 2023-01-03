@@ -9,9 +9,10 @@
 /* left */
 
 .devices {
-    background: url(../../assets/devices.png) center center no-repeat;
+    background: url(../../assets/devices.png) top center no-repeat;
     background-size: cover;
     position: relative;
+    height: 576px;
 }
 .devices img {
     position: absolute;
@@ -77,7 +78,7 @@
     margin-bottom: calc(var(--base-unit)*4);
     padding: calc(var(--base-unit)*3) 0;
 }
-.loginOrSignUp  p.or small {
+.loginOrSignUp p.or small {
     background-color: var(--color-secondary-bg);
     font-weight: bold;
     font-size: 80%;

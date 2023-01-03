@@ -59,9 +59,10 @@ export const updatePost = (post) => async (dispatch) => {
 
 
 const postsReducer = (state = {}, action) => {
+  // debugger
   switch (action.type) {
     case RECEIVE_POST:
-      return { ...state, [action.post.id]: action.post };
+      return { ...state, [action.payload.post.id]: action.payload.post };
     case RECEIVE_POSTS:
     return { ...action.posts };
     case REMOVE_POSTS:

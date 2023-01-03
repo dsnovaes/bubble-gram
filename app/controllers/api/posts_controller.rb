@@ -28,9 +28,10 @@ class Api::PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
+        @user = @post.user
         @related = Post.where('user_id = ? AND id != ?', @post.user_id, params[:id]).order(created_at: :desc).limit(6)
         if @post
-            if !@post.user.private_profile || @post.user_id.followers.include?(current_user)
+            if !@post.user.private_profile || @post.user.followers.include?(current_user)
                 render :show
             else
                 render json: { errors: @post.errors.full_messages }, status: 403

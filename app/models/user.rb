@@ -56,6 +56,8 @@ class User < ApplicationRecord
     has_many :followings,
         through: :follows,
         source: :following
+    
+    has_one_atttached :profile_picture
 
     def self.find_by_credentials(credential, password)
         user = nil
