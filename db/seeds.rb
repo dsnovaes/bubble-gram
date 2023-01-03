@@ -42,6 +42,8 @@ ApplicationRecord.transaction do
     disnee = User.create!(username: "disney", password: "whatever", name: "Disney World", email: "disnee@appacademy.io", bio: "", private_profile: true)
     coding_memes = User.create!(username: "coding_memes", password: "whatever", name: "Coding Memes", email: "codingmemes@appacademy.io", bio: "The best coding memes")
     john_mayer = User.create!(username: "johnmayer", password: "whatever", name: "John Mayer", email: "johnmayer@appacademy.io", bio: "Singer, songwriter, and guitarist")
+    pete_murray = User.create!(username: "petemurraymusic", password: "whatever", name: "Pete Murray", email: "petemurray@appacademy.io", bio: "Pete Murray, Best Of Tour: On sale 30/11 at my website!")
+    archdigest =  User.create!(username: "archdigest", password: "whatever", name: "Architectural Digest", email: "archdigest@appacademy.io", bio: "The International Design Authority.")
 
     puts "Creating posts"
     post1_matthew = Post.create!(user_id: matthew.id)

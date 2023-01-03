@@ -3,10 +3,6 @@ class Api::PostsController < ApplicationController
     before_action :require_logged_in, only: [:update]
 
     def index
-        puts "this is the current_user"
-        puts current_user
-        puts "this was the current_user"
-        puts current_user.followers
         case params[:type]
         when "feed"
             the_user_id = params[:user_id]
@@ -16,20 +12,23 @@ class Api::PostsController < ApplicationController
                 user = User.find(the_user_id)
                 followings = user.following.pluck("following_id")
             end
-            @posts = Post.where(user_id: followings).order(:created_at)
+            @posts = Post.where(user_id: followings).order(created_at: :desc)
         when "showPage"
-            @posts = Post.where(user_id: params[:user_id]).order(:created_at)
+            @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc)
         else
             public_profiles = User.where(private_profile: false).pluck("id")
             if current_user
-                public_profiles.push(current_user.followers)
+                current_user.followings.each do |follower|
+                    public_profiles.push(follower.id)
+                end
             end
-            @posts = Post.where(user_id: public_profiles).order(:created_at)
+            @posts = Post.where(user_id: public_profiles).order(created_at: :desc)
         end
     end
 
     def show
         @post = Post.find(params[:id])
+        @related = Post.where('user_id = ? AND id != ?', @post.user_id, params[:id]).order(created_at: :desc).limit(6)
         if @post
             if !@post.user.private_profile || @post.user_id.followers.include?(current_user)
                 render :show
