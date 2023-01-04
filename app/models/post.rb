@@ -25,5 +25,7 @@ class Post < ApplicationRecord
         class_name: :Reaction,
         foreign_key: :post_id,
         dependent: :destroy
+    
+    has_one_attached :media
 
 end

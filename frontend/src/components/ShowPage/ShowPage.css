@@ -8,7 +8,7 @@
     border-bottom-right-radius: var(--base-unit);
 }
 .showPage figure {
-    background:red;
+    background:grey;
     width:600px;
     height: 600px;
 }
