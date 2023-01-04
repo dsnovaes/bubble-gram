@@ -1,3 +1,5 @@
+require "open-uri"
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -27,39 +29,55 @@ ApplicationRecord.transaction do
     puts "Seeding the DB..."
     puts "Creating users..."
 
-    User.create!(
+    demo = User.create!(
         username: "Demo-lition", 
         email: "demo@user.io", 
         password: "password",
         name: "Demo User"
     )
+    demo.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{demo.username}.jpeg`), filename: `#{demo.username}.jpeg`)
 
-    matthew = User.create!(username: "birdwatcher", password: "whatever", name: "Matthew Goodpub", email: "matthew@gmail.com", bio: "I love bird watching")
     diego = User.create!(username: "dsnovaes", password: "whatever", name: "Diego Novaes", email: "dsnovaes1@gmail.com", bio: "Founder of BubbleGram")
-    elon = User.create!(username: "elonmusk", password: "whatever", name: "Elon Musk", email: "elon@tesla.com", bio: "I might buy BubbleGram")
-    disnee = User.create!(username: "disney", password: "whatever", name: "Disney World", email: "disnee@appacademy.io", bio: "", private_profile: true)
-    coding_memes = User.create!(username: "coding_memes", password: "whatever", name: "Coding Memes", email: "codingmemes@appacademy.io", bio: "The best coding memes")
-    john_mayer = User.create!(username: "johnmayer", password: "whatever", name: "John Mayer", email: "johnmayer@appacademy.io", bio: "Singer, songwriter, and guitarist")
-    pete_murray = User.create!(username: "petemurraymusic", password: "whatever", name: "Pete Murray", email: "petemurray@appacademy.io", bio: "Pete Murray, Best Of Tour: On sale 30/11 at my website!")
+    diego.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{diego.username}.jpg`), filename: `#{diego.username}.jpeg`)
+    elon = User.create!(username: "elonmusk", password: "whatever", name: "Elon Musk", email: "elon@tesla.com", bio: "Elon Musk Is 👇\n\nCEO - SpaceX 🚀,Tesla 🚘\n\nFounder - The Boring Company 🛣\n\nCo-Founder - Neuralink, OpenAI 🤖🦾\n\nThis is a fan page ! 🌾")
+    elon.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{elon.username}.jpeg`), filename: `#{elon.username}.jpeg`)
+    codingmemes = User.create!(username: "codingmemes", password: "whatever", name: "Coding Memes", email: "codingmemes@appacademy.io", bio: "The best coding memes")
+    codingmemes.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{codingmemes.username}.jpeg`), filename: `#{codingmemes.username}.jpeg`)
+    johnmayer = User.create!(username: "johnmayer", password: "whatever", name: "John Mayer", email: "johnmayer@appacademy.io", bio: "Singer, songwriter, and guitarist")
+    johnmayer.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{johnmayer.username}.jpeg`), filename: `#{johnmayer.username}.jpeg`)
+    petemurray = User.create!(username: "petemurray", password: "whatever", name: "Pete Murray", email: "petemurray@appacademy.io", bio: "Pete Murray, Best Of Tour: On sale 30/11 at my website!")
+    petemurray.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{petemurray.username}.jpeg`), filename: `#{petemurray.username}.jpeg`)
     archdigest =  User.create!(username: "archdigest", password: "whatever", name: "Architectural Digest", email: "archdigest@appacademy.io", bio: "The International Design Authority.")
+    archdigest.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{archdigest.username}.jpeg`), filename: `#{archdigest.username}.jpeg`)
     titta =  User.create!(username: "titta", password: "dogdog", name: "Titta", email: "titta@appacademy.io", bio: "4yo, Jack Russel Terrier")
-    titta.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/uno.jpg"), filename: "uno.jpg")
+    titta.profilePictureUrl.attach(io: URI.open("https://bubblegram-dev.s3.us-west-1.amazonaws.com/kiyftirjrk60cu23eix7ooc6xwf8?response-content-disposition=inline%3B%20filename%3D%22titta_profile.jpeg%22%3B%20filename%2A%3DUTF-8%27%27titta_profile.jpeg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAREVK3H5BEDCK6UKG%2F20230104%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20230104T163012Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=a75dbed7a60c18283d9e6ab2cc32ac71dc905ec02eacb32fc3d037c298394887"), filename: "titta_profile.jpg")
     pele =  User.create!(username: "pele", password: "bestofalltimes", name: "Pelé", email: "pele@appacademy.io", bio: "Brazilian | #10\n3x World Cup Champion\nLeading Goal Scorer of All Time (1,283)\nFIFA Football Player of the Century\nGlobal Ambassador and Humanitarian")
+    pele.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{pele.username}.jpeg`), filename: `#{pele.username}.jpeg`)
+    momo =  User.create!(username: "momo", password: "whatever", name: "Momo Mochi Lam-Hufford", email: "momo@appacademy.io", bio: "Helpful alarm clock. Must be fed on time. Talkative and love to chew things. Will sit on your back or shoulders.. but only if I love you.")
+    momo.profilePictureUrl.attach(io: URI.open(`https://bubblegram-dev.s3.us-west-1.amazonaws.com/#{momo.username}.jpg`), filename: `#{momo.username}.jpg`)
 
     puts "Creating posts"
 
-    post1_john = Post.create!(user_id: john_mayer.id, caption: "Hello from the studio… I know it’s been a while since I’ve updated you on what’s next, and since many of you have asked when the next leg of touring is, I thought I’d share my thoughts and intentions for the future. I love touring and will continue to play live shows, but in staying open to what’s driving me creatively, it felt like making more music was the most inspired feeling I had. I know the Sob Rock tour was only in the US, and though I will make it to other cities and countries in the future, I’ve just got more songs to make. I’m having the time of my life writing and recording, and it won’t be long before I share some very exciting news about some new projects. I’m grateful beyond description for all the love and support I’ve got in you all, and I’m the luckiest person in the world to still be on this big beautiful ride with you all. ♥️ (photos by @daniel)")
+    post1_elon = Post.create!(user_id: elon.id, caption: "Happy New Year 🎆🎊")
+    post1_elon.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/newyear.jpeg"), filename: "newyear.jpeg")
+    post2_elon = Post.create!(user_id: elon.id)
+    post2_elon.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/flame.jpeg"), filename: "flame.jpeg")
 
-    post2_john = Post.create!(user_id: john_mayer.id, caption: "\“You’re gonna have to give him a moment, son. John Mayer has to think about his whole life before he plays.\” (photo by @candytman)")
-    
-    post3_john = Post.create!(user_id: john_mayer.id, caption: "Here is a nice photo someone took of me this evening. I hope you’re enjoying what’s left of summer.")
-    
-    post4_john = Post.create!(user_id: john_mayer.id, caption: "\“Cause a little bit of summer…\” Announcing Rise For The River, three great-big-very-small-shows in Livingston, MT to support a county greatly impacted by flooding and the resulting closure of the Yellowstone Park entrance that the local economy relies on. I’m blown away by the generosity of my friends @bobweir and @davechappelle and can’t wait to celebrate this awesome community with those who share my love for it. Don’t be mad if the tickets sell out (they may be gone by the time you read this) but do text \“Flood22\” to 41444 if you care to contribute. Head to johnmayer.com for tickets.")
-    
-    post5_john = Post.create!(user_id: john_mayer.id, caption: "These tours with @deadandcompany exist on an almost otherworldly plane - everyone, on stage and in the crowd, meets up in this shared dream, and on the last night, after the final note is struck, we leave it all on the stage. We bow, we hug, we share our love for one another and then… we disappear. I fly through the dead of night and wake up at home, where my ears ring, my heart sings, and I’m left with this mix of fatigue, joy, accomplishment, and deep appreciation for what I was able to be a part of. I can feel the connected, collective experience of thousands of others who wake up feeling the same. I’ll never get over the profound beauty and uniqueness of this, and we’ll never in our lifetime see the likes of @bobweir @mickeyhart and @billkreutzmann, playing beyond all perceived limitations and expectations. It’s nothing short of remarkable. Thank you one and all for allowing me a seat on this transcendent ride. ♥️")
+    post1_john = Post.create!(user_id: johnmayer.id, caption: "Hello from the studio… I know it’s been a while since I’ve updated you on what’s next, and since many of you have asked when the next leg of touring is, I thought I’d share my thoughts and intentions for the future. I love touring and will continue to play live shows, but in staying open to what’s driving me creatively, it felt like making more music was the most inspired feeling I had. I know the Sob Rock tour was only in the US, and though I will make it to other cities and countries in the future, I’ve just got more songs to make. I’m having the time of my life writing and recording, and it won’t be long before I share some very exciting news about some new projects. I’m grateful beyond description for all the love and support I’ve got in you all, and I’m the luckiest person in the world to still be on this big beautiful ride with you all. ♥️ (photos by @daniel)")
+    post1_john.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/hello.jpeg"), filename: "hello.jpeg")
+    post2_john = Post.create!(user_id: johnmayer.id, caption: "\“You’re gonna have to give him a moment, son. John Mayer has to think about his whole life before he plays.\” (photo by @candytman)")
+    post2_john.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/candytman.jpeg"), filename: "candytman.jpeg")
+    post3_john = Post.create!(user_id: johnmayer.id, caption: "Here is a nice photo someone took of me this evening. I hope you’re enjoying what’s left of summer.")
+    post3_john.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/hereis.jpeg"), filename: "hereis.jpeg")
+    post4_john = Post.create!(user_id: johnmayer.id, caption: "\“Cause a little bit of summer…\” Announcing Rise For The River, three great-big-very-small-shows in Livingston, MT to support a county greatly impacted by flooding and the resulting closure of the Yellowstone Park entrance that the local economy relies on. I’m blown away by the generosity of my friends @bobweir and @davechappelle and can’t wait to celebrate this awesome community with those who share my love for it. Don’t be mad if the tickets sell out (they may be gone by the time you read this) but do text \“Flood22\” to 41444 if you care to contribute. Head to johnmayer.com for tickets.")
+    post4_john.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/cause.jpeg"), filename: "cause.jpeg")
+    post5_john = Post.create!(user_id: johnmayer.id, caption: "These tours with @deadandcompany exist on an almost otherworldly plane - everyone, on stage and in the crowd, meets up in this shared dream, and on the last night, after the final note is struck, we leave it all on the stage. We bow, we hug, we share our love for one another and then… we disappear. I fly through the dead of night and wake up at home, where my ears ring, my heart sings, and I’m left with this mix of fatigue, joy, accomplishment, and deep appreciation for what I was able to be a part of. I can feel the connected, collective experience of thousands of others who wake up feeling the same. I’ll never get over the profound beauty and uniqueness of this, and we’ll never in our lifetime see the likes of @bobweir @mickeyhart and @billkreutzmann, playing beyond all perceived limitations and expectations. It’s nothing short of remarkable. Thank you one and all for allowing me a seat on this transcendent ride. ♥️")
+    post5_john.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/thesetours.jpeg"), filename: "thesetours.jpeg")
+    post6_john = Post.create!(user_id: johnmayer.id, caption: "Atlanta night two: it’s the joy of my life, now having enough songs to spread out over two nights of music and *still* wishing we’d gotten to play even more. Thank you for keeping these tunes alive…. ♥️")
+    post6_john.media.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/atlanta.jpeg"), filename: "atlanta.jpeg")
 
     post1_titta = Post.create!(caption: "Me and my best friend, Peppa", user_id: titta.id)
-    post1_titta.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/peppa.jpeg"), filename: "peppa.jpeg")
+    post1_titta.attach(io: URI.open("https://bubblegram-dev.s3.us-west-1.amazonaws.com/tuanwy23j7l5xkx7bo1o7tqs2s78?response-content-disposition=inline%3B%20filename%3D%22titta.jpeg%22%3B%20filename%2A%3DUTF-8%27%27titta.jpeg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAREVK3H5BEDCK6UKG%2F20230104%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20230104T163012Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=8f1321738812426f51e7a338f1279fb12899e4c5fe13c07a823cb30ae634d4c0"), filename: "peppa.jpeg")
     post2_titta = Post.create!(caption: "Much better to turn into a cold dog, than a hot dog", user_id: titta.id)
     post2_titta.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/cold.jpg"), filename: "cold.jpg")
     post3_titta = Post.create!(caption: "Windy", user_id: titta.id)
@@ -103,20 +121,35 @@ ApplicationRecord.transaction do
     post12_pele.attach(io: File.open("/Users/diegonovaes/Dropbox/appAcademy/bubblegram/frontend/src/assets/pele12.jpg"), filename: "pele12.jpg")
 
 
+    (1..12).each do |number|
+        post = Post.create!(user_id: momo.id)
+        uri = "https://bubblegram-dev.s3.us-west-1.amazonaws.com/momo"
+        uri += number.to_s
+        uri += ".jpeg"
+        filename = uri.split("/")[-1]
+        post.attach(io: URI.open(uri), filename: filename)
+    end
+
+
     puts "Creating following relations"
     Follow.create!(follower_id: 1, following_id: diego.id)
     Follow.create!(follower_id: 1, following_id: elon.id)
-    Follow.create!(follower_id: 1, following_id: coding_memes.id)
+    Follow.create!(follower_id: 1, following_id: codingmemes.id)
     Follow.create!(follower_id: 2, following_id: matthew.id)
     Follow.create!(follower_id: 2, following_id: elon.id)
     Follow.create!(follower_id: 2, following_id: disnee.id)
-    Follow.create!(follower_id: 2, following_id: coding_memes.id)
-    Follow.create!(follower_id: 2, following_id: john_mayer.id)
-    Follow.create!(follower_id: 3, following_id: coding_memes.id)
-    Follow.create!(follower_id: 3, following_id: john_mayer.id)
+    Follow.create!(follower_id: 2, following_id: codingmemes.id)
+    Follow.create!(follower_id: 2, following_id: johnmayer.id)
+    Follow.create!(follower_id: 3, following_id: codingmemes.id)
+    Follow.create!(follower_id: 3, following_id: johnmayer.id)
     Follow.create!(follower_id: diego.id, following_id: disnee.id)
     Follow.create!(follower_id: 4, following_id: matthew.id)
     Follow.create!(follower_id: 4, following_id: diego.id)
+
+    (1..User.all.length).each do |id|
+        random = ""
+        Follow.create!(follower_id: id, following_id: random)
+    end
 
     puts "Creating comments"
     [post1_matthew.id, post2_matthew.id, post3_matthew.id].each do |post|
@@ -133,21 +166,21 @@ ApplicationRecord.transaction do
         post3_john.id,
         post4_john.id,
         post5_john.id,
-        post1_coding_memes.id, 
-        post2_coding_memes.id, 
-        post3_coding_memes.id,
-        post4_coding_memes.id, 
-        post5_coding_memes.id, 
-        post6_coding_memes.id, 
-        post7_coding_memes.id,
-        post8_coding_memes.id, 
-        post9_coding_memes.id, 
-        post10_coding_memes.id,
-        post11_coding_memes.id, 
-        post12_coding_memes.id, 
-        post13_coding_memes.id, 
-        post14_coding_memes.id,
-        post15_coding_memes.id
+        post1_codingmemes.id, 
+        post2_codingmemes.id, 
+        post3_codingmemes.id,
+        post4_codingmemes.id, 
+        post5_codingmemes.id, 
+        post6_codingmemes.id, 
+        post7_codingmemes.id,
+        post8_codingmemes.id, 
+        post9_codingmemes.id, 
+        post10_codingmemes.id,
+        post11_codingmemes.id, 
+        post12_codingmemes.id, 
+        post13_codingmemes.id, 
+        post14_codingmemes.id,
+        post15_codingmemes.id
     ].each do |post|
         Comment.create!(post_id: post, user_id: diego.id, body: "LOL")
         Comment.create!(post_id: post, user_id: disnee.id, body: "Those memes remind me of the best co-hort ever (crying emoji)")
@@ -157,21 +190,21 @@ ApplicationRecord.transaction do
 
     puts "Creating reactions"
     [
-        post1_coding_memes.id, 
-        post2_coding_memes.id, 
-        post3_coding_memes.id,
-        post4_coding_memes.id, 
-        post5_coding_memes.id, 
-        post6_coding_memes.id, 
-        post7_coding_memes.id,
-        post8_coding_memes.id, 
-        post9_coding_memes.id, 
-        post10_coding_memes.id,
-        post11_coding_memes.id, 
-        post12_coding_memes.id, 
-        post13_coding_memes.id, 
-        post14_coding_memes.id,
-        post15_coding_memes.id
+        post1_codingmemes.id, 
+        post2_codingmemes.id, 
+        post3_codingmemes.id,
+        post4_codingmemes.id, 
+        post5_codingmemes.id, 
+        post6_codingmemes.id, 
+        post7_codingmemes.id,
+        post8_codingmemes.id, 
+        post9_codingmemes.id, 
+        post10_codingmemes.id,
+        post11_codingmemes.id, 
+        post12_codingmemes.id, 
+        post13_codingmemes.id, 
+        post14_codingmemes.id,
+        post15_codingmemes.id
     ].each do |post|
         Reaction.create!(post_id: post, user_id: matthew.id)
         Reaction.create!(post_id: post, user_id: diego.id)

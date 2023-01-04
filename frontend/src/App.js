@@ -11,9 +11,6 @@ function App() {
     <>
       <Navigation />
         <Switch>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
@@ -22,6 +19,9 @@ function App() {
           </Route>
           <Route path="/posts/:postId">
             <ShowPage />
+          </Route>
+          <Route path="/login">
+            <LoginFormPage />
           </Route>
         </Switch>
     </>

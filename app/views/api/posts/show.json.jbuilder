@@ -5,14 +5,14 @@ end
 
 json.user do
     json.extract! @user, :id, :username, :name
-    json.profilePictureUrl url_for(@user.profile_picture)
+    json.profilePictureUrl url_for(@user.profile_picture) if @user.profile_picture.attached?
 end
 
 json.related do 
     @related.each do|post|
         json.set! post.id do  
             json.extract! post, :id, :user_id, :caption
-            # json.mediaUrl url_for(post.media)
+            json.mediaUrl url_for(post.media)
         end
     end
 end
