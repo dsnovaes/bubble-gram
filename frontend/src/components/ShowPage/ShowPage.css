@@ -1,0 +1,126 @@
+.showPage {
+    margin: calc(var(--base-unit) * 10) auto;
+    max-width:975px;
+    display: flex;
+    background-color: var(--color-secondary-bg);
+    border:1px solid var(--color-border);
+    border-top-right-radius: var(--base-unit);
+    border-bottom-right-radius: var(--base-unit);
+}
+.showPage figure {
+    background:grey;
+    width:600px;
+    height: 600px;
+}
+.showPage figure img {
+    width: 100%;
+    height: auto;
+}
+.showPage aside {
+    width: calc(375px - calc(var(--base-unit) * 6));
+    display:grid;
+    grid-template-rows: 60px 1fr ;
+}
+.showPage aside .top {
+    border-bottom: 1px solid var(--color-border);
+    width:100%;
+    padding: calc(var(--base-unit) * 3);
+}
+.showPage aside .top a {
+    display: flex;
+    align-items: center;
+}
+.showPage aside .top a img {
+    margin-right: calc(var(--base-unit) * 3);
+    border-radius: 50%;
+    width: calc(var(--base-unit) * 9);
+    height: auto;
+}
+.showPage aside .top a h2 {
+    font-size:90%;
+    font-weight: bold;
+}
+.showPage aside .comments {
+    padding: calc(var(--base-unit) * 3);
+    overflow-y: scroll;
+    height: 350px;
+}
+.showPage aside .comment {
+    display: flex;
+    line-height: 1.4;
+    font-size: 90%;
+    margin-bottom: calc(var(--base-unit) * 4);
+}
+.showPage aside .comment img {
+    margin-right: calc(var(--base-unit) * 3);
+    border-radius: 50%;
+    width: calc(var(--base-unit) * 9);
+    height: auto;
+}
+.showPage aside .comment p {
+    margin-bottom: var(--base-unit);
+}
+.showPage aside .comment time {
+    font-size: 80%;
+    color: var(--color-secondary-font);
+    font-weight: bold;
+}
+.showPage aside .more {
+    width:calc(100% + var(--base-unit) * 6);
+    border-top: 1px solid var(--color-border);
+}
+.showPage aside .more .buttons {
+    padding: calc(var(--base-unit) * 2);
+}
+.showPage aside .more .buttons button {
+    background: transparent;
+    border:0;
+    padding: 0;
+    margin-right: calc(var(--base-unit) * 2);
+}
+.showPage aside .more .buttons button svg {
+    fill: var(--color-primary-font);
+    color: var(--color-primary-font);
+}
+.showPage aside .newComment {
+    border-top: 1px solid var(--color-border);
+    margin-top:calc(var(--base-unit)*4);
+    padding: calc(var(--base-unit) * 2);
+    align-items: center;
+}
+.showPage aside .newComment form {
+    display: grid;
+    grid-template-columns: calc(var(--base-unit) * 8) 1fr calc(var(--base-unit) * 20);
+}
+.showPage aside .newComment form svg {
+    width: calc(var(--base-unit) * 8);
+    height: auto;
+    fill: var(--color-primary-font);
+    color: var(--color-primary-font);
+}
+.showPage aside .newComment form input {
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-primary-font);
+    border: 0;
+    padding: calc(var(--base-unit) * 2);
+    outline: 0;
+    margin-left: calc(var(--base-unit) * 2);
+}
+.showPage aside .newComment form button {
+    background-color: transparent;
+    font-weight: bold;
+    color: var(--color-link);
+    border: 0;
+    /* padding: calc(var(--base-unit) * 2); */
+    outline: 0;
+}
+.showPage aside .newComment button:disabled {
+    color: var(--color-link-faded);
+}
+.related {
+    border-top: 1px solid var(--color-border);
+    margin: 0 auto;
+    max-width:975px;
+    padding-top: calc(var(--base-unit) * 10);
+}

@@ -39,15 +39,25 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         dependent: :destroy
 
-    has_many :followers,
+    has_many :is_followed, -> { where status: "accepted" },
         class_name: :Follow,
         foreign_key: :following_id,
         dependent: :destroy
 
-    has_many :following,
+    has_many :followers,
+        through: :is_followed,
+        source: :user
+
+    has_many :follows, -> { where status: "accepted" },
         class_name: :Follow,
         foreign_key: :follower_id,
         dependent: :destroy
+
+    has_many :followings,
+        through: :follows,
+        source: :following
+    
+    has_one_attached :profile_picture
 
     def self.find_by_credentials(credential, password)
         user = nil

@@ -113,3 +113,14 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--color-primary-bg) inset !important;
   color: var(--color-secondary-font);
 }
+strong {
+    font-weight: bold;
+}
+.errors li {
+    background-color: rgb(210, 170, 170);
+    color: rgb(121, 23, 23);
+    border: 1px solid rgb(121, 23, 23);
+    border-radius: var(--base-unit);
+    padding: calc(var(--base-unit)*4);
+    margin-bottom: calc(var(--base-unit)*4);
+}

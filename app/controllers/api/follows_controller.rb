@@ -5,7 +5,7 @@ class Api::FollowsController < ApplicationController
     def create
         check_if_exists = Follow.find_by(follower_id: current_user.id, following_id: follow_params[:following_id])
 
-        case check_if_exists&.status
+        case check_if_exists.status
         when "blocked"
             # return error, because the user is trying to follow someone who has blocked them
             render json: { errors: "user blocked" }, status: :unprocessable_entity

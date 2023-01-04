@@ -14,6 +14,8 @@ gem "puma", "~> 5.0"
 gem "bcrypt"
 gem "jbuilder"
 
+gem "aws-sdk-s3"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
@@ -52,5 +54,6 @@ group :development do
   gem "pry-rails"
   gem "better_errors"
   gem "binding_of_caller"
+  # gem "open-uri"
 end
 

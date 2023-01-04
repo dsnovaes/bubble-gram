@@ -4,7 +4,11 @@ class Api::UsersController < ApplicationController
     before_action :require_logged_in, only: [:update]
 
     def show
-        @user = User.find_by(username: params[:id]) # searches by the username
+        if params[:user_id]
+            @user = User.find(params[:userid]) # searches by id
+        else
+            @user = User.find_by(username: params[:id]) # searches by the username
+        end
         
         if @user
             if !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
