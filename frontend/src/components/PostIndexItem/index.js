@@ -1,8 +1,11 @@
 const PostIndexItem = ({post}) => {
     return (
-        <li>
-            <a href={`/posts/${post.id}`}>View post <strong>{post.id}</strong></a>
-        </li>
+        <div className="thumbnail">
+            <a href={`/posts/${post.id}`}>
+                
+                <img src={post.mediaUrl} />
+            </a>
+        </div>
     )
 }
 

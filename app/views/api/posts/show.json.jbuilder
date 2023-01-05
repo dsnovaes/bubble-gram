@@ -1,6 +1,6 @@
 json.post do
     json.extract! @post, :id, :user_id, :caption, :created_at, :reaction_ids, :comment_ids
-    json.mediaUrl url_for(@post.media)
+    json.mediaUrl url_for(@post.media) if @post.media.attached?
 end
 
 json.user do
@@ -11,8 +11,8 @@ end
 json.related do 
     @related.each do|post|
         json.set! post.id do  
-            json.extract! post, :id, :user_id, :caption
-            json.mediaUrl url_for(post.media)
+            json.extract! post, :id, :user_id, :comment_ids, :reaction_ids
+            json.mediaUrl url_for(post.media) if post.media.attached?
         end
     end
 end

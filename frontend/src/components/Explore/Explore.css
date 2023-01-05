@@ -1,0 +1,4 @@
+.explorePage {
+    margin: calc(var(--base-unit) * 10) auto;
+    width: 975px;
+}
