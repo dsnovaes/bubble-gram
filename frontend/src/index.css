@@ -127,6 +127,8 @@ strong {
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: calc(var(--base-unit)*10);
+    row-gap: calc(var(--base-unit)*10);
 }
 .grid img {
     width: 100%;

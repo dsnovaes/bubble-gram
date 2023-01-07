@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, removePosts } from '../../store/posts'
 import PostIndexItem from '../PostIndexItem'
 import "./Explore.css"
+import Header from "../Header"
 
 const Explore = () => {
     const dispatch = useDispatch();
@@ -14,9 +15,12 @@ const Explore = () => {
     }, [dispatch])
 
     return (
-        <div className="explorePage">
-            <div className="grid">
-                {posts?.map(post => <PostIndexItem post={post} key={post.id}/>)}
+        <div className="container">
+            <Header />
+            <div className="explorePage">
+                <div className="grid">
+                    {posts?.map(post => <PostIndexItem post={post} key={post.id}/>)}
+                </div>
             </div>
         </div>
     )

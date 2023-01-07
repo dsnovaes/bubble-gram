@@ -1,4 +1,4 @@
-header {
+header.navigation {
     padding: calc(var(--base-unit) * 4) 0;
     background-color: var(--color-secondary-bg);
     border-bottom: 1px solid var(--color-border);
@@ -7,7 +7,7 @@ header {
     overflow: visible;
     align-items: flex-start;
 }
-header nav {
+header.navigation nav {
     margin: 0 calc(var(--base-unit) * 10);
     width:100vw;
     max-width: 1280px;
@@ -15,17 +15,17 @@ header nav {
     justify-content: space-between;
     align-items: center;
 }
-header .profileButton {
+header.navigation .profileButton {
     border: 1px solid var(--color-border);
     font-weight: bold;
     padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 4);
     border-radius: calc(var(--base-unit) * 10);
     background: var(--color-secondary-bg);
 }
-header .relative {
+header.navigation .relative {
     position: relative;
 }
-header .profile-dropdown {
+header.navigation .profile-dropdown {
     position: absolute;
     top: calc(var(--base-unit) * 10);
     right:0;
@@ -34,28 +34,28 @@ header .profile-dropdown {
     border-radius: calc(var(--base-unit) * 2);
     width: max-content;
 }
-header .profile-dropdown a {
+header.navigation .profile-dropdown a {
     padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 4);
     margin: calc(var(--base-unit) * 2);
     display: block;
     border-radius: calc(var(--base-unit) * 2);
 }
 
-header .profile-dropdown a:hover, header .loggedOutButtons li a:hover {
+header.navigation .profile-dropdown a:hover, header.navigation .loggedOutButtons li a:hover {
     color: white;
     background-color: var(--color-link);
 }
-header .profileButton:hover {
+header.navigation .profileButton:hover {
     color:white;
     background: linear-gradient(107.16deg,#ec0d78 20.37%,#ff2b40 44.58%,#f75735 66.71%,#fe880e 86.77%,#fe880e 0);
 }
-header .profileButton span {
+header.navigation .profileButton span {
     margin-left: calc(var(--base-unit) * 2);
 }
-header .loggedOutButtons {
+header.navigation .loggedOutButtons {
     display: flex;
 }
-header .loggedOutButtons li a {
+header.navigation .loggedOutButtons li a {
     border: 1px solid var(--color-border);
     font-weight: bold;
     padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 4);

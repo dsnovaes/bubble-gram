@@ -3,18 +3,15 @@ class Api::PostsController < ApplicationController
     before_action :require_logged_in, only: [:update]
 
     def index
+        user_id = params[:user_id].to_i
         case params[:type]
         when "feed"
-            the_user_id = params[:user_id]
-            if params[:user_id] == current_user.id
-                followings = current_user.following.pluck("following_id")
-            else
-                user = User.find(the_user_id)
-                followings = user.following.pluck("following_id")
-            end
+            followings = []
+            followings = current_user.followings.pluck("following_id")
+            followings.push(current_user.id)
             @posts = Post.where(user_id: followings).order(created_at: :desc)
         when "showPage"
-            @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc)
+            @posts = Post.where(user_id: user_id).order(created_at: :desc)
         else
             public_profiles = User.where(private_profile: false).pluck("id")
             if current_user

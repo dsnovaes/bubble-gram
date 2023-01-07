@@ -1,18 +1,25 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import Explore from "./components/Explore";
 import ShowPage from "./components/ShowPage"
+import Feed from "./components/Feed"
+import Create from "./components/Create"
+
 
 function App() {
+  const sessionUser = useSelector(state => state.session.user);
   return (
     <>
-      <Navigation />
         <Switch>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/create">
+            <Create />
           </Route>
           <Route exact path="/posts">
             <Explore />
@@ -23,6 +30,15 @@ function App() {
           <Route path="/login">
             <LoginFormPage />
           </Route>
+          { sessionUser ? 
+          <Route path="/">
+            <Feed />
+          </Route>
+          :
+          <Route path="/">
+            <LoginFormPage />
+          </Route>
+          }
         </Switch>
     </>
   );

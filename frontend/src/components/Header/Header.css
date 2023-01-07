@@ -1,0 +1,88 @@
+.logo {
+    fill: var(--color-primary-font);
+    color: var(--color-primary-font);
+}
+header {
+    height: 100vh;
+}
+.insideHeader {
+    background-color: var(--color-secondary-bg);
+    height: 100vh;
+    width: 250px;
+    border-right: 1px solid var(--color-border);
+    position: fixed;
+    display: grid;
+    grid-template-rows: calc(var(--base-unit) * 20) 1fr calc(var(--base-unit) * 20);
+}
+.insideHeader img {
+    border-radius: 12px;
+}
+.insideHeader span {
+    margin-left: calc(var(--base-unit) * 4);
+}
+.insideHeader a, .insideHeader button {
+    padding: calc(var(--base-unit) * 4);
+    margin: calc(var(--base-unit) * 2);
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+}
+.insideHeader svg {
+    color: var(--color-primary-font);
+    fill: var(--color-primary-font);
+}
+.insideHeader .mobile {
+    display: none;
+}
+.insideHeader button {
+    background-color: transparent;
+    border: 0;
+    text-align: left;
+}
+.insideHeader a:hover, .insideHeader button:hover {
+    background:linear-gradient(107.16deg,#ec0d78 20.37%,#ff2b40 44.58%,#f75735 66.71%,#fe880e 86.77%,#fe880e 0);
+    color: white;
+    transition: 0.25s all;
+}
+.insideHeader a:hover svg, .insideHeader a:hover span, .insideHeader button:hover svg, .insideHeader button:hover span {
+    color: white;
+    fill: white
+}
+.insideHeader img {
+    width:calc(var(--base-unit) * 6);
+    height:calc(var(--base-unit) * 6);
+}
+.insideHeader h1 a {
+    width: calc(var(--base-unit) * 30);
+    border-radius: 0;
+}
+.insideHeader h1 a:hover {
+    background: transparent;
+    opacity: 0.75;
+    transition: 0.25s all;
+}
+.insideHeader h1 a:hover svg {
+    color: var(--color-primary-font);
+    fill: var(--color-primary-font);
+}
+.more {
+    position: relative;
+}
+button.more:hover {
+    background: var(--color-primary-bg);
+}
+.morePopOver {
+    position: absolute;
+    bottom: calc(var(--base-unit) * 15);
+    left: calc(var(--base-unit) * 15);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-secondary-bg);
+    border-radius: calc(var(--base-unit) * 2);
+    width: max-content;
+}
+.morePopOver a {
+    border-radius: calc(var(--base-unit) * 2);
+}
+.morePopOver a:hover {
+    background-color: var(--color-link);
+}

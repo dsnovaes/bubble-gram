@@ -37,7 +37,7 @@ const LoginFormPage = () => {
     }
 
     return (
-        <div className="container">
+        <div className="loginContainer">
             <section className="login">
                 <div className="devices">
                     <img src={deviceImg} height="490" alt="screenshot " />

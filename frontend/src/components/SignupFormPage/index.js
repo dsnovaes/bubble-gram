@@ -41,7 +41,7 @@ function SignupFormPage() {
   };
 
   return (
-    <div className="container">
+    <div className="loginContainer">
         <section className="signup">
             <div className="loginOrSignUp">
               <div className="logo">

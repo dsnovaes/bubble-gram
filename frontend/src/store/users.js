@@ -5,15 +5,30 @@ const RECEIVE_USERS = 'users/receiveUsers';
 const REMOVE_USERS = 'users/removeUsers';
 
 const receiveUser = (user) => {
-    return {
-      type: RECEIVE_USER,
-      payload: user
-    };
+  return {
+    type: RECEIVE_USER,
+    payload: user
   };
+};
+
+const receiveUsers = (users) => {
+  return {
+    type: RECEIVE_USERS,
+    users
+  };
+};
 
 export const removeUsers = () => {
   return {
     type: REMOVE_USERS
+  }
+}
+  
+export const fetchUsers = () => async dispatch => {
+  const res = await csrfFetch("/api/users");
+  if(res.ok) {
+    const users = await res.json();
+    dispatch(receiveUsers(users));
   }
 }
   
