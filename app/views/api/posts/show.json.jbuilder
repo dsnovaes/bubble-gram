@@ -4,7 +4,7 @@ json.post do
 end
 
 json.user do
-    json.extract! @user, :id, :username, :name
+    json.extract! @user, :id, :username, :name, :private_profile, :following_ids, :follower_ids
     json.profile_picture_url @user.profile_picture.url if @user.profile_picture.attached?
     if @user.followers.include?(current_user) 
         json.followed true 

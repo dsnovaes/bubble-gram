@@ -13,6 +13,7 @@ const Feed = () => {
     const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
 
     useEffect(() => {
+        document.title="Feed - BubbleGram"
         dispatch(fetchPosts(sessionUser.id, "feed"));
         return () => dispatch(removePosts());
     }, [dispatch])
@@ -29,7 +30,7 @@ const Feed = () => {
                         </section>
                         <aside>
                             <div className="myProfile">
-                                <a href={`/${sessionUser.username}`}>
+                                <a href={`/users/${sessionUser.username}`}>
                                     <div className="profile">
                                         <ProfilePicture user={sessionUser} />
                                     </div>

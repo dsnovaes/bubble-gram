@@ -15,6 +15,7 @@ import FollowButton from "../FollowButton"
 
 const ShowPage = () => {
     const {postId} = useParams()
+    const sessionUser = useSelector(state => state.session.user);
     const postIdInt = parseInt(postId)
 
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const ShowPage = () => {
         dispatch(fetchPost(postIdInt));
         return () => dispatch(removePosts());
     }, [dispatch,postId])
+
 
     useEffect(() => {
         dispatch(fetchComments(postIdInt));
@@ -35,13 +37,17 @@ const ShowPage = () => {
     let post_user = posts[1]
     let related = posts[2] ? Object.values(posts[2]) : []
     const comments = useSelector(state => state.comments ? Object.values(state.comments) : []);
-    
-    if (!postIdInt) return <Redirect to={`/${post_user.username}`} />; // redirect to users' profile page if private and not followed account
+
+    useEffect(()=>{
+        document.title="Check this photo - BubbleGram"
+    },[posts])
+
+    if (!sessionUser && post_user?.privateProfile) return <Redirect to="/login" />; 
 
     if (post && comments) {
         return (
             <div className="container">
-                <Header />
+                { sessionUser ?  <Header /> : <div></div> }
                 <div>
                     <article className="showPage">
                         <figure>
@@ -49,22 +55,22 @@ const ShowPage = () => {
                         </figure>
                         <aside>
                             <div className="top">
-                                <a href={`/${post_user.username}`}>
+                                <a href={`/users/${post_user.username}`}>
                                     <div className="profile">
                                         <ProfilePicture user={post_user} />
                                     </div>
                                     <h2>{post_user.username}</h2>
                                 </a>
                                 { !post_user.followed && (
-                                <FollowButton /> )}
+                                <FollowButton user={post_user} /> )}
                             </div>
                             <div className="comments">
                                 {/* first comment is the caption */}
 
                                 <div className="comment">
-                                    <a href={`/${post_user.username}`}><ProfilePicture user={post_user} /></a>
+                                    <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
                                     <div>
-                                        <p><a href={`/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption}</p>
+                                        <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption}</p>
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>
                                 </div>

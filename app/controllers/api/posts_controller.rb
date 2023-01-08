@@ -14,12 +14,13 @@ class Api::PostsController < ApplicationController
             @posts = Post.where(user_id: user_id).order(created_at: :desc)
         else
             public_profiles = User.where(private_profile: false).pluck("id")
+            followed_by_current_user = []
             if current_user
                 current_user.followings.each do |follower|
-                    public_profiles.push(follower.id)
+                    followed_by_current_user.push(follower.id)
                 end
             end
-            @posts = Post.where(user_id: public_profiles).order(created_at: :desc)
+            @posts = Post.where(user_id: public_profiles).where.not(user_id: followed_by_current_user).order(created_at: :desc)
         end
     end
 

@@ -10,6 +10,7 @@ const Explore = () => {
     let posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
 
     useEffect(() => {
+        document.title="Explore - BubbleGram"
         dispatch(fetchPosts());
         return () => dispatch(removePosts());
     }, [dispatch])

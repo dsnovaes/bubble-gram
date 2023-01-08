@@ -12,7 +12,7 @@ const PostFeed = ({post}) => {
     return (
         <div className="post">
             <div className={`top ${currentClass}`}>
-                <a href={`/${post.username}`}>
+                <a href={`/users/${post.username}`}>
                     <div className="profile">
                         <ProfilePicture user={post.user} />
                     </div>
@@ -32,10 +32,13 @@ const PostFeed = ({post}) => {
             <div className="caption">
                 <p><a href={`/${post.username}`}><strong>{post.username}</strong></a> {post.caption}</p>
             </div>
+            { post.commentIds.length > 0 &&
+                <div className="viewComments">
+                    <p><a href="/modal">View all {post.reactionIds.length} comments</a></p>
+                </div>
+             }
             {/* create a if statement: if commentIds.length === 1, show the comment. if is >1 show latest comment and link "View all {length} comments. if !length, then do nothing" */}
-            {/* <div className="viewComments">
-                <p><a href="/modal">View all {post.reactionIds.length} comments</a></p>
-            </div> */}
+            {/*  */}
             <div className="date">
                 <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
             </div>

@@ -19,9 +19,9 @@ class Api::UsersController < ApplicationController
 
     def show
         if params[:user_id]
-            @user = User.find(params[:userid]) # searches by id
-        else
-            @user = User.find_by(username: params[:id]) # searches by the username
+            @user = User.find(params[:user_id]) # searches by id
+        elsif params[:username]
+            @user = User.find_by(username: params[:username]) # searches by the username
         end
         
         if @user

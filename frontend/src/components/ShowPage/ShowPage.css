@@ -47,7 +47,6 @@
     height: auto;
 }
 .showPage aside .top a h2 {
-    margin-left: calc(var(--base-unit) * 3);
     font-size:90%;
     font-weight: bold;
 }
