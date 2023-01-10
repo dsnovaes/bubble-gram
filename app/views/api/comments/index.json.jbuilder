@@ -4,8 +4,8 @@
         json.user do
             json.username comment.user.username
             json.id comment.user.id
-            # json.profile_picture_url comment.user.profile_picture.url
-            json.profile_picture_url "http://localhost:3000/static/media/baybridge.803ace97d00338843cfc.jpg"
+            json.profile_picture_url comment.user.profile_picture.url
+            # json.profile_picture_url "http://localhost:3000/static/media/baybridge.803ace97d00338843cfc.jpg"
         end
     end
 end

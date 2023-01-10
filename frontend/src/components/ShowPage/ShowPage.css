@@ -138,6 +138,3 @@
 .related h3 strong {
     color: var(--color-primary-font);
 }
-.related a:hover {
-    opacity: 0.75;
-}

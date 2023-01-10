@@ -45,10 +45,10 @@ export const fetchPost = (postId) => async dispatch => {
   }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (postData) => async (dispatch) => {
     const response = await csrfFetch(`/api/posts`, {
         method: "POST",
-        body: post
+        body: postData
     });
     const data = await response.json();
     dispatch(receivePost(data.post));
@@ -58,9 +58,7 @@ export const createPost = (post) => async (dispatch) => {
 export const updatePost = (post) => async (dispatch) => {
     const response = await csrfFetch(`/api/posts/${post.id}`, {
         method: "PUT",
-        body: JSON.stringify({
-          post
-        })
+        body: JSON.stringify(post)
     });
     const data = await response.json();
     dispatch(receivePost(data.post));

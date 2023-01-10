@@ -19,7 +19,7 @@ const ViewComment = ({comment}) => {
             id: comment.id,
             body: newBody
         }
-        dispatch(updateComment(editedComment))
+        if (newBody !== comment.body) dispatch(updateComment(editedComment))
     }  
 
     if (comment) {

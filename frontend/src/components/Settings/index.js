@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
 import Header from "../Header"
+import "./Settings.css"
 
 function Settings() {
   const dispatch = useDispatch();
@@ -17,8 +18,19 @@ function Settings() {
   const [privateProfile, setPrivateProfile] = useState(sessionUser.private_profile);
   const [errors, setErrors] = useState([]);
 
+  let user = {
+    email,
+    name,
+    username,
+    password,
+    profilePicture,
+    privateProfile,
+    bio
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
     setErrors([]);
     let private_profile = privateProfile.toString();
     return dispatch(sessionActions.update({ username, email, name, password, bio, private_profile }))

@@ -4,7 +4,7 @@ const ProfilePicture = ({user}) => {
     if (user.profilePictureUrl) {
         
         return (
-            <img src={PlaceholderPicture} alt={user.name} />
+            <img src={user.profilePictureUrl} alt={user.name} />
         )
     } else {
         return (

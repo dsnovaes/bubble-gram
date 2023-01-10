@@ -59,7 +59,7 @@ const Header = () => {
                     <div className="morePopOver">
                         <ul>
                             <li><a href="/settings">Settings</a></li>
-                            <li><a href="/settings#appearance">Switch appearance</a></li>
+                            {/* <li><a href="/settings#appearance">Switch appearance</a></li> */}
                             <li><a onClick={logout}>Logout</a></li>
                         </ul>
                     </div>

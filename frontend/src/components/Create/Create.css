@@ -2,10 +2,11 @@
     width: 935px;
     background-color: var(--color-secondary-bg);
     border: 1px solid var(--color-border);
-    margin: calc(var(--base-unit)*40) auto;
+    margin: auto;
     border-radius: calc(var(--base-unit));
     display: grid; 
     grid-template-rows: calc(var(--base-unit)*12) 1fr; 
+    transition: 0.25s all;
 }
 .uploader h2 {
     width: 100%;
@@ -26,11 +27,16 @@
     margin: auto;
     font-size: 90%;
 }
+.uploader button.reset {
+    background-color: transparent;
+    color: var(--color-primary-font);
+    border:1px solid var(--color-border);
+}
 .uploader input, .uploader textarea {
     border:1px solid var(--color-border);
     font-family: sans-serif;
     background-color: transparent;
-    color: white;
+    color: var(--color-primary-font);
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -40,6 +46,11 @@
     margin-bottom: calc(var(--base-unit) *4);
     font-size: 90%;
 }
+.uploader input:focus, .uploader textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-font);
+    transition: 0.25s all;
+}
 .uploader p {
     font-size: 130%;
     margin: calc(var(--base-unit)*6) auto;
@@ -48,6 +59,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: calc(var(--base-unit) * 10) 0;
 }
 .uploader .lowerSection form {
     text-align: center;
@@ -61,7 +73,32 @@
     transition: 0.25s all;
 }
 
-
+.mockupPost {
+    background-color: white;
+    padding: calc(var(--base-unit)*2);
+    box-shadow: 0 0 calc(var(--base-unit) * 4) var(--color-black-transparent);
+    transform: rotate(-1deg);
+    width:300px;
+    margin: calc(var(--base-unit)*4) auto;
+}
+.mockupPost .username {
+    margin-bottom: calc(var(--base-unit)*2);
+    color: black;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+}
+.mockupPost .username img, .mockupPost .username svg {
+    border-radius: 50%;
+    width: calc(var(--base-unit) * 9);
+    margin-right: calc(var(--base-unit)*2);
+    height: auto;
+}
+.mockupPost figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 /* media queries < 1100 */
 

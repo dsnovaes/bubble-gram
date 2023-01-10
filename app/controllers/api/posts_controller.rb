@@ -40,25 +40,22 @@ class Api::PostsController < ApplicationController
     end
 
     def create 
-        puts "#= #= #= #= #= #= #= before create the instance of post"
-        puts post_params
         @post = Post.new(post_params)
         @post.user_id = current_user.id
-        puts "#= #= #= #= #= #= #= before the if statement"
-        puts "#= #= #= #= #= #= #= this is the media"
-        puts @puts.media
+        @user = @post.user
         if @post.save
-            puts "#= #= #= #= #= #= #= inside of the if statement, after save"
-            render json: { message: "You did it!" }
+            @related = Post.where('user_id = ? AND id != ?', @post.user_id, @post.id).order(created_at: :desc).limit(6)
+            render :show
         else
-            puts "#= #= #= #= #= #= #= error message here"
             render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
     def update
         @post = Post.find(params[:id])
+        @user = @post.user
         if @post.user_id == current_user.id && @post.update(post_params)
+            @related = Post.where('user_id = ? AND id != ?', @post.user_id, @post.id).order(created_at: :desc).limit(6)
             render :show
         else
             render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity

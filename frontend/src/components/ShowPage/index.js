@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
-import { fetchPost, removePosts, deletePost } from '../../store/posts'
+import { fetchPost, removePosts, updatePost, deletePost } from '../../store/posts'
 import { fetchComments, removeComments } from '../../store/comments'
 import './ShowPage.css'
 import moment from 'moment';
@@ -21,9 +21,9 @@ const ShowPage = () => {
     const comments = useSelector(state => state.comments ? Object.values(state.comments) : []);
     const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
     
-    let post = posts.find(post => post.id === postIdInt);
-    let post_user = posts[1]
-    let related = posts[2] ? Object.values(posts[2]) : []
+    const post = posts.find(post => post.id === postIdInt);
+    const post_user = posts[1]
+    const related = posts[2] ? Object.values(posts[2]) : []
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -43,14 +43,20 @@ const ShowPage = () => {
         document.title="Check this photo - BubbleGram"
     },[posts])
 
-    const handleDelete = (postId) => {
-        if (window.confirm("Are you sure?")) {
-            dispatch(deletePost(postId)).then(() => history.push(`/users/${post_user.username}`))
+    const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete this photo?")) {
+            dispatch(deletePost(postIdInt)).then(() => history.push(`/users/${post_user.username}`))
         }
     }
 
-    const handleEdit = (commentId) => {
-        console.log(`edit caption ${commentId}`)
+    const handleEdit = () => {
+        let editingCaption = post.caption || ""
+        let newCaption = prompt("Edit the caption of this photo", editingCaption)
+        let editedCaption = {
+            id: post.id,
+            caption: newCaption
+        }
+        if (newCaption !== editingCaption) dispatch(updatePost(editedCaption))
     }
 
     if (!sessionUser && post_user?.privateProfile) return <Redirect to="/login" />; 
@@ -64,7 +70,7 @@ const ShowPage = () => {
                 <div>
                     <article className="showPage">
                         <figure>
-                            <img src={PlaceholderPicture} alt="media" />
+                            <img src={post.mediaUrl} alt="media" />
                         </figure>
                         <aside>
                             <div className="top">
@@ -83,7 +89,7 @@ const ShowPage = () => {
                                 <div className="comment">
                                     <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
                                     <div>
-                                        <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption}</p>
+                                        <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption} { new Date(post.createdAt).toISOString().split('.')[0] !== new Date(post.updatedAt).toISOString().split('.')[0] && ( <small>(edited)</small> ) }</p>
                                         { sessionUser.id === post.userId && ( <p><button onClick={()=>handleEdit(post.id)}>Edit caption</button> <button onClick={()=>handleDelete(post.id)}>Delete post</button></p> ) }
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>
