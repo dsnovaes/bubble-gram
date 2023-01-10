@@ -40,11 +40,11 @@ export const fetchComment = (commentId) => async dispatch => {
   }
 }
 
-export const createComment = (commentData) => async (dispatch) => {
+export const createComment = (comment) => async (dispatch) => {
   const response = await csrfFetch(`/api/comments`, {
       method: "POST",
       body: JSON.stringify({
-        commentData
+        comment
       }),
       headers: {
           "Content-Type": "application/json",
@@ -61,12 +61,24 @@ export const updateComment = (comment) => async (dispatch) => {
         method: "PUT",
         body: JSON.stringify({
           comment
-        })
+        }),
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
     });
     const data = await response.json();
     dispatch(receiveComment(data.comment));
     return response;
 };
+
+export const deleteComment = (commentId) => async dispatch => {
+  const res = await csrfFetch(`/api/comments/${commentId}`, {method: "DELETE"});
+  if(res.ok) {
+    const follow = await res.json();
+    dispatch(removeComments());
+  }
+}
 
 
 const commentsReducer = (state = {}, action) => {

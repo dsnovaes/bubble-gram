@@ -4,6 +4,7 @@ import { fetchPosts, removePosts } from '../../store/posts'
 import Header from "../Header"
 import PostFeed from "../PostFeed"
 import ProfilePicture from '../ProfilePicture';
+import PlaceholderPicture from "../../assets/baybridge.jpg"
 import "./Feed.css"
 
 const Feed = () => {
@@ -45,7 +46,7 @@ const Feed = () => {
                                 <div className="suggestedUser">
                                     <a href="/user.username">
                                         <div className="profile">
-                                            <img src="college.jpg" alt="user.name" />
+                                            <img src={PlaceholderPicture} alt="user.name" />
                                         </div>
                                         <div className="text">
                                             <h2>user.username</h2>

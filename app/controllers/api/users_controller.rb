@@ -23,16 +23,28 @@ class Api::UsersController < ApplicationController
         elsif params[:username]
             @user = User.find_by(username: params[:username]) # searches by the username
         end
-        
+
         if @user
-            if !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
+            if @user.id == current_user.id || !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
+                @show_posts = true
                 render :show
             else
-                render json: { errors: @user.errors.full_messages }, status: 401
+                @show_posts = false
+                render :show
             end
         else
             render json: { errors: @user.errors.full_messages }, status: 404
         end
+        
+        # if @user
+        #     if !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
+        #         render :show
+        #     else
+        #         render json: { errors: @user.errors.full_messages }, status: 401
+        #     end
+        # else
+        #     render json: { errors: @user.errors.full_messages }, status: 404
+        # end
     end
 
     def create

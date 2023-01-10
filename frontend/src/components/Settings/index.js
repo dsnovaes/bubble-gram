@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
+import Header from "../Header"
 
 function Settings() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function Settings() {
   const [email, setEmail] = useState(sessionUser.email);
   const [username, setUsername] = useState(sessionUser.username);
   const [password, setPassword] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
   const [name, setName] = useState(sessionUser.name);
   const [bio, setBio] = useState(sessionUser.bio);
   const [privateProfile, setPrivateProfile] = useState(sessionUser.private_profile);
@@ -37,6 +39,7 @@ function Settings() {
   if (sessionUser) {
     return (
       <div className="container">
+          <Header />
           <section className="signup">
               <div className="loginOrSignUp">
                 <h1>Settings</h1>
@@ -44,6 +47,16 @@ function Settings() {
                   <ul>
                     {errors.map(error => <li key={error}>{error}</li>)}
                   </ul>
+                  <label htmlFor="profilePicture">Upload a profile picture</label>
+                    <input
+                      type="file"
+                      name="profilePicture"
+                      value={profilePicture}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Choose a file in your computer"
+                      required
+                    />
+
                   <label htmlFor="email">Change your email</label>
                     <input
                       type="text"

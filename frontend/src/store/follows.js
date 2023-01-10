@@ -9,18 +9,27 @@ const receiveFollow = (follow) => {
       payload: follow
     };
   };
-
+  
 export const removeFollows = () => {
   return {
     type: REMOVE_FOLLOWS
   }
 }
 
-export const createFollow = (follower_id, following_id) => async dispatch => {
-    // types are: 
-    // "feed" -> fetches the follows of the accepted following users of the user
-    // "showPage" -> fetches the follows of the use
-    const res = await csrfFetch(`/api/follows?follower_id=${follower_id}&following_id=${following_id}`, { method: "POST" })
+export const createFollow = (currentUser,followingId) => async dispatch => {
+    const follow = {
+      follow: {
+        followerId: currentUser,
+        followingId
+      }
+    }
+    const res = await csrfFetch(`/api/follows?followerId=${currentUser}&followingId=${followingId}`,{
+      method: "POST",
+      body: JSON.stringify(follow),
+      headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+      }})
   
     if (res.ok) {
       const follow = await res.json();
@@ -28,11 +37,23 @@ export const createFollow = (follower_id, following_id) => async dispatch => {
     }
   }
   
-export const unFollow = (follower_id, following_id) => async dispatch => {
-  const res = await csrfFetch(`/api/follows/?follower_id=${follower_id}&following_id=${following_id}`, { method: "DELETE" });
+export const unFollow = (currentUser, followingId) => async dispatch => {
+  const follow = {
+    follow: {
+      followerId: currentUser,
+      followingId
+    }
+  }
+  const res = await csrfFetch(`/api/follows/${currentUser}?followerId=${currentUser}&followingId=${followingId}`, {
+    method: "DELETE",
+    body: JSON.stringify(follow),
+    headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }});
   if(res.ok) {
     const follow = await res.json();
-    dispatch(receiveFollow(follow));
+    dispatch(removeFollows());
   }
 }
 
@@ -50,7 +71,6 @@ export const updateFollow = (follower_id, following_id,status) => async (dispatc
 
 
 const followsReducer = (state = {}, action) => {
-  // debugger
   switch (action.type) {
     case RECEIVE_FOLLOW:
       return { ...state, [action.payload.follow.id]: action.payload.follow };

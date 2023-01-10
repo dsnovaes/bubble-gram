@@ -29,13 +29,19 @@
     width:100%;
     padding: calc(var(--base-unit) * 3);
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 .showPage aside .top button {
     background-color: transparent;
     color: var(--color-link);
     border:0;
+    display: flex;
+    align-items: center;
     font-weight: bold;
+}
+.showPage aside .top button svg {
+    margin-left: var(--base-unit);
 }
 .showPage aside .top a {
     display: flex;
@@ -60,6 +66,20 @@
     line-height: 1.4;
     font-size: 90%;
     margin-bottom: calc(var(--base-unit) * 4);
+}
+.showPage aside .comment button {
+    border:0;
+    background-color: transparent;
+    color: var(--color-link);
+    padding: 0;
+    margin-right: calc(var(--base-unit) * 4);
+    font-weight: bold;
+    font-size: 80%;
+}
+.showPage aside .comment small {
+    font-size: 70%;
+    color: var(--color-secondary-font);
+    margin-left: calc(var(--base-unit) * 2);
 }
 .showPage aside .comment img {
     margin-right: calc(var(--base-unit) * 3);

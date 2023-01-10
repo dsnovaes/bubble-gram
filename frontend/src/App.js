@@ -8,6 +8,7 @@ import ShowPage from "./components/ShowPage"
 import Feed from "./components/Feed"
 import Create from "./components/Create"
 import UserPage from "./components/UserPage"
+import Settings from "./components/Settings"
 
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
   return (
     <>
         <Switch>
+          <Route path="/settings">
+            <Settings />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>

@@ -22,7 +22,7 @@ class Api::ReactionsController < ApplicationController
     end
 
     def destroy
-        @reaction = Reaction.find(params[:id])
+        @reaction = Reaction.find_by(user_id: current_user.id, post_id: params[:id])
         if @reaction&.destroy
             render json: { reaction: nil }
         else

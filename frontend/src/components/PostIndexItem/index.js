@@ -1,8 +1,9 @@
+import PlaceholderPicture from "../../assets/baybridge.jpg"
 const PostIndexItem = ({post}) => {
     return (
         <div className="thumbnail">
             <a href={`/posts/${post.id}`}>
-                <img src={post.mediaUrl} />
+                <img src={PlaceholderPicture} />
             </a>
         </div>
     )

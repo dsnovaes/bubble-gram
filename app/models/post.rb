@@ -26,6 +26,10 @@ class Post < ApplicationRecord
         foreign_key: :post_id,
         dependent: :destroy
     
+    has_many :likers,
+        through: :reactions,
+        source: :user
+    
     has_one_attached :media
 
 end

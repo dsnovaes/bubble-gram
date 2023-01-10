@@ -30,6 +30,8 @@
     background-color: var(--color-link);
     color: white;
     border:none;
+    display: flex;
+    align-items: center;
     font-weight: bold;
     padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 5);
     border-radius: calc(var(--base-unit) * 2);
@@ -59,4 +61,10 @@
 }
 .userPage .numbers div {
     margin-right: calc(var(--base-unit) * 8);
+}
+.userPage .privateProfile {
+    background-color: var(--color-secondary-bg);
+    text-align: center;
+    border: 1px solid var(--color-border);
+    padding: calc(var(--base-unit)*20) 0;
 }

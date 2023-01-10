@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
-import { fetchPost, removePosts } from '../../store/posts'
+import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { fetchPost, removePosts, deletePost } from '../../store/posts'
 import { fetchComments, removeComments } from '../../store/comments'
 import './ShowPage.css'
 import moment from 'moment';
@@ -12,12 +12,20 @@ import NewComment from '../NewComment';
 import Header from "../Header"
 import ViewComment from '../ViewComment';
 import FollowButton from "../FollowButton"
+import PlaceholderPicture from "../../assets/baybridge.jpg"
 
 const ShowPage = () => {
     const {postId} = useParams()
-    const sessionUser = useSelector(state => state.session.user);
     const postIdInt = parseInt(postId)
+    const sessionUser = useSelector(state => state.session.user);
+    const comments = useSelector(state => state.comments ? Object.values(state.comments) : []);
+    const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
+    
+    let post = posts.find(post => post.id === postIdInt);
+    let post_user = posts[1]
+    let related = posts[2] ? Object.values(posts[2]) : []
 
+    const history = useHistory();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,24 +33,29 @@ const ShowPage = () => {
         return () => dispatch(removePosts());
     }, [dispatch,postId])
 
-
     useEffect(() => {
         dispatch(fetchComments(postIdInt));
         return () => dispatch(removeComments());
     }, [dispatch,postId])
 
-    let posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
-
-    let post = posts.find(post => post.id === postIdInt);
-    let post_user = posts[1]
-    let related = posts[2] ? Object.values(posts[2]) : []
-    const comments = useSelector(state => state.comments ? Object.values(state.comments) : []);
 
     useEffect(()=>{
         document.title="Check this photo - BubbleGram"
     },[posts])
 
+    const handleDelete = (postId) => {
+        if (window.confirm("Are you sure?")) {
+            dispatch(deletePost(postId)).then(() => history.push(`/users/${post_user.username}`))
+        }
+    }
+
+    const handleEdit = (commentId) => {
+        console.log(`edit caption ${commentId}`)
+    }
+
     if (!sessionUser && post_user?.privateProfile) return <Redirect to="/login" />; 
+
+    // if (!post) return <Redirect to={`/posts`} />
 
     if (post && comments) {
         return (
@@ -51,7 +64,7 @@ const ShowPage = () => {
                 <div>
                     <article className="showPage">
                         <figure>
-                            <img src={post.mediaUrl} alt="media" />
+                            <img src={PlaceholderPicture} alt="media" />
                         </figure>
                         <aside>
                             <div className="top">
@@ -71,6 +84,7 @@ const ShowPage = () => {
                                     <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
                                     <div>
                                         <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption}</p>
+                                        { sessionUser.id === post.userId && ( <p><button onClick={()=>handleEdit(post.id)}>Edit caption</button> <button onClick={()=>handleDelete(post.id)}>Delete post</button></p> ) }
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>
                                 </div>
@@ -81,12 +95,12 @@ const ShowPage = () => {
                             <div className="more">
 
                                 <div className="buttons">
-                                    <LikeButton />
+                                    <LikeButton post={post} />
                                     <button className="commentBtn"><svg aria-label="Comment" color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></path></svg></button>
                                 </div>  
                                 <p className="likesCount">{post.reactionIds.length} likes</p>
                                 <time>{new Date(post.createdAt).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric'})}</time>
-                                <NewComment />
+                                <NewComment postId={post.id} />
                             </div>
                         </aside>
                     </article>

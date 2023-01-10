@@ -38,7 +38,7 @@ const UserPage = () => {
                                 <FollowButton user={user} />
                             </div>
                             <div className="numbers">
-                                <div><strong>{posts.length}</strong> posts</div>
+                                <div><strong>{user.postIds.length}</strong> posts</div>
                                 <div><strong>{user.followerIds.length}</strong> followers</div>
                                 <div><strong>{user.followingIds.length}</strong> following</div>
                             </div>
@@ -48,11 +48,14 @@ const UserPage = () => {
                             </div>
                         </div>
                     </div>
-                    { posts && (
+                    { (sessionUser.id == user.id || user.followingIds.includes(sessionUser.id) || !user.privateProfile) ? (
                     <div className="grid">
                         {posts.map(post => <PostIndexItem post={post} key={post.id}/>)}
                     </div>
-                    )}
+                    ) : 
+                    <div className="privateProfile">
+                    <p>This Account is Private</p>
+                    <p>Follow to see their photos and videos.</p> </div> }
                 </div>
             </div>
         )
