@@ -75,7 +75,6 @@ export const updateComment = (comment) => async (dispatch) => {
 export const deleteComment = (commentId) => async dispatch => {
   const res = await csrfFetch(`/api/comments/${commentId}`, {method: "DELETE"});
   if(res.ok) {
-    const follow = await res.json();
     dispatch(removeComments());
   }
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import * as sessionActions from "../../store/session";
+import {updateUser} from "../../store/users"
 import Header from "../Header"
 import "./Settings.css"
 
@@ -30,17 +30,16 @@ function Settings() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
+    // const formData = new FormData();
     setErrors([]);
-    let private_profile = privateProfile.toString();
-    return dispatch(sessionActions.update({ username, email, name, password, bio, private_profile }))
-      .catch(async (res) => {
+    dispatch(updateUser(user))
+    .catch(async (res) => {
       let data;
       try {
-        // .clone() essentially allows you to read the response body twice
-        data = await res.clone().json();
+          // .clone() essentially allows you to read the response body twice
+          data = await res.clone().json();
       } catch {
-        data = await res.text(); // Will hit this case if the server is down
+          data = await res.text(); // Will hit this case if the server is down
       }
       if (data?.errors) setErrors(data.errors);
       else if (data) setErrors([data]);
@@ -64,9 +63,8 @@ function Settings() {
                       type="file"
                       name="profilePicture"
                       value={profilePicture}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setProfilePicture(e.target.value)}
                       placeholder="Choose a file in your computer"
-                      required
                     />
 
                   <label htmlFor="email">Change your email</label>
@@ -111,7 +109,7 @@ function Settings() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password (min. 6 characters)"
-                      required
+
                     />
                   <button type="submit">Save</button>
                 </form>

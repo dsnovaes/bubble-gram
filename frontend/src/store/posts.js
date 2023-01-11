@@ -67,7 +67,6 @@ export const updatePost = (post) => async (dispatch) => {
 
 export const deletePost = (postId) => async (dispatch) => {
   const response = await csrfFetch(`/api/posts/${postId}`, {method: "DELETE"});
-  const data = await response.json();
   dispatch(removePosts());
   return response;
 };

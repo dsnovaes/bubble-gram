@@ -6,7 +6,7 @@ import Header from "../Header"
 import PostFeed from "../PostFeed"
 import ProfilePicture from '../ProfilePicture';
 import SuggestedUser from '../SuggestedUser';
-import PlaceholderPicture from "../../assets/baybridge.jpg"
+// import PlaceholderPicture from "../../assets/baybridge.jpg"
 import "./Feed.css"
 
 
@@ -21,7 +21,7 @@ const Feed = () => {
         dispatch(fetchPosts(sessionUser.id, "feed")).then(()=>window.scrollTo(0,0))
         dispatch(fetchUsers("suggestions"))
         return () => dispatch(removePosts());
-    }, [dispatch])
+    }, [dispatch,sessionUser.id])
 
     if (posts) {
         return (

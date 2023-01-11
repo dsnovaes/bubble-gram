@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { fetchPost, removePosts, updatePost, deletePost } from '../../store/posts'
@@ -31,12 +31,12 @@ const ShowPage = () => {
     useEffect(() => {
         dispatch(fetchPost(postIdInt));
         return () => dispatch(removePosts());
-    }, [dispatch,postId])
+    }, [dispatch,postId,postIdInt])
 
     useEffect(() => {
         dispatch(fetchComments(postIdInt));
         return () => dispatch(removeComments());
-    }, [dispatch,postId])
+    }, [dispatch,postId,postIdInt])
 
 
     useEffect(()=>{

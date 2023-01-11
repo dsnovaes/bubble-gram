@@ -1,11 +1,10 @@
 import csrfFetch from '../../store/csrf';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Header from "../Header"
 import { Redirect,useHistory } from 'react-router-dom';
 import "./Create.css"
 import ProfilePicture from '../ProfilePicture';
-import {createPost} from "../../store/posts"
 
 const Create = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -14,7 +13,6 @@ const Create = () => {
     const [mediaUrl,setMediaUrl] = useState("");
     const [errors, setErrors] = useState([]);
     const [hasSelectedPhoto,setHasSelectedPhoto] = useState(false);
-    const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(()=>{
@@ -124,6 +122,9 @@ const Create = () => {
                                     <button onClick={handleRestart} className="reset">Change photo</button>
                                     <p>Now create a caption to this masterpiece</p>
                                     <textarea onChange={e => setCaption(e.target.value)} placeholder="Caption" value={caption}>{caption}</textarea>
+                                    <ul className="errors">
+                                        {errors.map(error => <li key={error}>{error}</li>)}
+                                    </ul>
                                     <button type="submit">Post</button>
                                 </>
                             )}

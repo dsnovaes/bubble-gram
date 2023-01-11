@@ -39,7 +39,6 @@ export const createReaction = (postId) => async dispatch => {
 export const unReaction = (postId) => async dispatch => {
   const res = await csrfFetch(`/api/reactions/${postId}`, {method: "DELETE"});
   if(res.ok) {
-    const reaction = await res.json();
     dispatch(removeReactions());
   }
 }

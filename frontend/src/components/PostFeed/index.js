@@ -1,6 +1,6 @@
 import ProfilePicture from "../ProfilePicture"
 import NewComment from "../NewComment"
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
 import LikeButton from "../Like"
 import PlaceholderPicture from "../../assets/baybridge.jpg" 
