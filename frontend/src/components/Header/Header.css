@@ -91,6 +91,7 @@ button.more:hover svg, button.more:hover span {
     background-color: var(--color-secondary-bg);
     border-radius: calc(var(--base-unit) * 2);
     width: max-content;
+    z-index: 10;
 }
 .morePopOver a {
     border-radius: calc(var(--base-unit) * 2);

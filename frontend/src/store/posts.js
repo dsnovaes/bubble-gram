@@ -1,5 +1,5 @@
 import csrfFetch from './csrf';
-import {RECEIVE_REACTION} from "./reactions"
+// import {RECEIVE_REACTION} from "./reactions"
 
 const RECEIVE_POST = 'posts/receivePost';
 const RECEIVE_POSTS = 'posts/receivePosts';
@@ -76,11 +76,10 @@ const postsReducer = (state = {}, action) => {
   // debugger
   switch (action.type) {
     case RECEIVE_POST:
-      // error reading "id" when dispatching createPost
       return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
     case RECEIVE_POSTS:
       return { ...action.posts };
-    case RECEIVE_REACTION:
+    // case RECEIVE_REACTION:
       // debugger
       // return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
     case REMOVE_POSTS:
