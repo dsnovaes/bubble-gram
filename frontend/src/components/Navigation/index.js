@@ -11,6 +11,7 @@ function Navigation() {
   if (sessionUser) {
     sessionLinks = (
       <>
+        <a href="/posts">Explore</a>
         <ProfileButton user={sessionUser} />
       </>
     );

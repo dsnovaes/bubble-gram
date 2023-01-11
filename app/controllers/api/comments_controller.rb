@@ -1,8 +1,15 @@
 class Api::CommentsController < ApplicationController
+    wrap_parameters include: Comment.attribute_names + ["postId","body"]
+
+    def index
+        @comments = Comment.where(post_id: params[:post_id]) if params[:post_id]
+        render :index
+    end
 
     def create
         @comment = Comment.new(comment_params)
         @comment.user_id = current_user.id
+        
         if @comment.save!
             render :show
         else

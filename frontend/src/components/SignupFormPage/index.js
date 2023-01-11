@@ -16,7 +16,7 @@ function SignupFormPage() {
   const [privateProfile, setPrivateProfile] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/posts" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,17 +31,14 @@ function SignupFormPage() {
       } catch {
         data = await res.text(); // Will hit this case if the server is down
       }
-      console.log("before the errors")
-      debugger
       if (data?.message) setErrors(data.message);
       else if (data) setErrors([data]);
       else setErrors([res.statusText]);
-      console.log("these are the errors",errors)
     });
   };
 
   return (
-    <div className="container">
+    <div className="loginContainer">
         <section className="signup">
             <div className="loginOrSignUp">
               <div className="logo">

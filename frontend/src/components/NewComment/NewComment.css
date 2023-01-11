@@ -1,0 +1,36 @@
+.showPage aside .newComment {
+    border-top: 1px solid var(--color-border);
+    margin-top:calc(var(--base-unit)*4);
+    padding: calc(var(--base-unit) * 2);
+    align-items: center;
+}
+.showPage aside .newComment form {
+    display: grid;
+    grid-template-columns: calc(var(--base-unit) * 8) 1fr calc(var(--base-unit) * 20);
+}
+.showPage aside .newComment form svg {
+    width: calc(var(--base-unit) * 8);
+    height: auto;
+    fill: var(--color-primary-font);
+    color: var(--color-primary-font);
+}
+.showPage aside .newComment form input {
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-primary-font);
+    border: 0;
+    padding: calc(var(--base-unit) * 2);
+    outline: 0;
+    margin-left: calc(var(--base-unit) * 2);
+}
+.showPage aside .newComment form button {
+    background-color: transparent;
+    font-weight: bold;
+    color: var(--color-link);
+    border: 0;
+    /* padding: calc(var(--base-unit) * 2); */
+    outline: 0;
+}
+.showPage aside .newComment button:disabled {
+    color: var(--color-link-faded);
+}

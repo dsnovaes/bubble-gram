@@ -10,8 +10,9 @@
 #  updated_at   :datetime         not null
 #
 class Follow < ApplicationRecord
+    validates :follower_id, presence: true, uniqueness: { scope: [:following_id] }
     validates :following_id, presence: true
-    validates :follower_id, presence: true, uniqueness: { scope: :following_id }
+    # validates_uniqueness_of :follower_id, :scope => [:following_id]
     validates :status, inclusion: ["pending", "accepted", "blocked"]
 
     belongs_to :user,

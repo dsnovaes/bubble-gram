@@ -12,7 +12,7 @@ const LoginFormPage = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return <Redirect to="/posts" />;
+    if (sessionUser) return <Redirect to="/" />;
 
     const handleDemoLogin = (e) => {
         return dispatch(sessionActions.login({credential: "demo@user.io", password: "password"}))
@@ -37,7 +37,7 @@ const LoginFormPage = () => {
     }
 
     return (
-        <div className="container">
+        <div className="loginContainer">
             <section className="login">
                 <div className="devices">
                     <img src={deviceImg} height="490" alt="screenshot " />

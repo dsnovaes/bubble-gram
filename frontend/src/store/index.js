@@ -3,11 +3,17 @@ import thunk from "redux-thunk"
 import session from "./session"
 import posts from "./posts"
 import users from "./users"
+import comments from "./comments"
+import follows from "./follows"
+import reactions from "./reactions"
 
 const rootReducer = combineReducers({
     session,
     posts,
-    users
+    users,
+    comments,
+    follows,
+    reactions
 });
 
 

@@ -1,4 +1,5 @@
 import csrfFetch from './csrf';
+import {RECEIVE_REACTION} from "./reactions"
 
 const RECEIVE_POST = 'posts/receivePost';
 const RECEIVE_POSTS = 'posts/receivePosts';
@@ -17,7 +18,6 @@ const receivePosts = (posts) => {
     posts
   };
 };
-
 
 export const removePosts = () => {
   return {
@@ -45,26 +45,44 @@ export const fetchPost = (postId) => async dispatch => {
   }
 }
 
-export const updatePost = (post) => async (dispatch) => {
-    const response = await csrfFetch(`/api/posts/${post.id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-          post
-        })
+export const createPost = (postData) => async (dispatch) => {
+    const response = await csrfFetch(`/api/posts`, {
+        method: "POST",
+        body: postData
     });
     const data = await response.json();
     dispatch(receivePost(data.post));
     return response;
 };
 
+export const updatePost = (post) => async (dispatch) => {
+    const response = await csrfFetch(`/api/posts/${post.id}`, {
+        method: "PUT",
+        body: JSON.stringify(post)
+    });
+    const data = await response.json();
+    dispatch(receivePost(data.post));
+    return response;
+};
+
+export const deletePost = (postId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/posts/${postId}`, {method: "DELETE"});
+  const data = await response.json();
+  dispatch(removePosts());
+  return response;
+};
 
 const postsReducer = (state = {}, action) => {
   // debugger
   switch (action.type) {
     case RECEIVE_POST:
+      // error reading "id" when dispatching createPost
       return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
     case RECEIVE_POSTS:
-    return { ...action.posts };
+      return { ...action.posts };
+    case RECEIVE_REACTION:
+      // debugger
+      // return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
     case REMOVE_POSTS:
       return {};
     default:

@@ -3,22 +3,49 @@ class Api::UsersController < ApplicationController
 
     before_action :require_logged_in, only: [:update]
 
+    def index
+        case params[:type]
+        when "query"
+            @users = User.where("username LIKE ?", params[:query])
+        when "suggestions"
+            followingsAndCurrentUser = current_user.followings.pluck("following_id")
+            followingsAndCurrentUser.push(current_user.id)
+            @users = User.where.not(id: followingsAndCurrentUser).limit(3)
+        else
+            @users = User.all
+            puts "#=#=#=#=#=#= number of users #{@users.length}"
+        end
+        render :index
+    end
+
     def show
         if params[:user_id]
-            @user = User.find(params[:userid]) # searches by id
-        else
-            @user = User.find_by(username: params[:id]) # searches by the username
+            @user = User.find(params[:user_id]) # searches by id
+        elsif params[:username]
+            @user = User.find_by(username: params[:username]) # searches by the username
         end
-        
+
         if @user
-            if !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
+            if @user.id == current_user.id || !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
+                @show_posts = true
                 render :show
             else
-                render json: { errors: @user.errors.full_messages }, status: 401
+                @show_posts = false
+                render :show
             end
         else
             render json: { errors: @user.errors.full_messages }, status: 404
         end
+        
+        # if @user
+        #     if !@user.private_profile || (@user.private_profile && @user.followers.include?(current_user))
+        #         render :show
+        #     else
+        #         render json: { errors: @user.errors.full_messages }, status: 401
+        #     end
+        # else
+        #     render json: { errors: @user.errors.full_messages }, status: 404
+        # end
     end
 
     def create
@@ -34,7 +61,7 @@ class Api::UsersController < ApplicationController
     end
 
     def update
-        @user = User.find_by(username: params[:id])
+        @user = User.find(params[:id])
         if @user.update(user_params)
             render :show
         else

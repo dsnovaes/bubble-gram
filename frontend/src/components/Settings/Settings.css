@@ -1,0 +1,8 @@
+.settings {
+    margin: auto;
+}
+.settings h1 {
+    font-weight: bold;
+    font-size: 200%;
+    margin-bottom: 30px;
+}
