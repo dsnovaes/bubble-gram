@@ -1,6 +1,6 @@
 import csrfFetch from './csrf';
 
-const RECEIVE_REACTION = 'reactions/receiveReaction';
+export const RECEIVE_REACTION = 'reactions/receiveReaction';
 const REMOVE_REACTIONS = 'reactions/removeReactions';
 
 const receiveReaction = (reaction) => {

@@ -1,4 +1,11 @@
 .explorePage {
     margin: calc(var(--base-unit) * 10) auto;
-    width: 975px;
+    width: 935px;
+}
+
+@media screen and (max-width: 1280px) {
+    .explorePage {
+        margin: var(--base-unit);
+        width: calc(100% - calc(var(--base-unit)*2));
+    }
 }

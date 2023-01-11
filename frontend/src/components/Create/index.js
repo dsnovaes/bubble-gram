@@ -5,6 +5,7 @@ import Header from "../Header"
 import { Redirect,useHistory } from 'react-router-dom';
 import "./Create.css"
 import ProfilePicture from '../ProfilePicture';
+import {createPost} from "../../store/posts"
 
 const Create = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -34,20 +35,49 @@ const Create = () => {
         if (media) {
           formData.append('post[media]', media);
         }
+
         const response = await csrfFetch('/api/posts', {
           method: 'POST',
           body: formData
         });
         if (response.ok) {
           const message = await response.json();
-          console.log(message.message);
           setCaption("");
           setMedia("");
           setMediaUrl("");
           setHasSelectedPhoto(false)
           history.push(`/posts/${message.post.id}`)
         }
-      }
+
+        // const response = dispatch(createPost(formData))
+        // .then(async ()=> {
+        //     if (response.ok) {
+        //         const message = await response.json();
+        //         history.push(`/posts/${message.post.id}`)
+        //     }
+        // })
+        // .catch(async (res) => {
+        //     let data;
+        //     try {
+        //       // .clone() essentially allows you to read the response body twice
+        //       data = await res.clone().json();
+        //     } catch {
+        //       data = await res.text(); // Will hit this case if the server is down
+        //     }
+        //     if (data?.errors) {
+        //       setErrors(data.errors)
+        //     }
+        //     else if (data) {
+        //       setErrors([data])
+        //     }
+        //     else {
+        //       setErrors([res.statusText])
+        //     }
+        // });
+
+
+
+    }
 
       const handleRestart = e => {
         e.preventDefault();
@@ -87,7 +117,7 @@ const Create = () => {
                             { hasSelectedPhoto && (
                                 <>
                                     <p>Great, check this out:</p>
-                                    <div className="mockupPost">
+                                    <div className="polaroid">
                                         <div className="username"><ProfilePicture user={sessionUser} /> {sessionUser.username}</div>
                                         <div className="media"><figure><img src={mediaUrl} alt="selected media" /></figure></div>
                                     </div>

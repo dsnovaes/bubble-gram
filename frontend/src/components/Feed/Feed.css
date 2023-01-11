@@ -52,6 +52,8 @@
 .feed aside .suggestedUser {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom:calc(var(--base-unit)*4);
 }
 .feed aside .suggestedUser .follow {
     color: var(--color-link); 
@@ -69,7 +71,6 @@
     font-size: 90%;
     display: flex;
     align-items: center;
-    margin-bottom:calc(var(--base-unit)*4);
 }
 .feed aside .myProfile a .text, .feed aside .suggestedUser a .text {
     margin-left:calc(var(--base-unit)*4);
@@ -81,6 +82,19 @@
 .feed aside .myProfile a .text h3, .feed aside .suggestedUser a .text h3 {
     color: var(--color-secondary-font);
 }
+
+.feed aside .suggestions > h3 {
+    margin: calc(var(--base-unit)*5) 0;
+}
+.feed aside .suggestions button {
+    background-color: transparent;
+    color: var(--color-link);
+    border:0;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
 
 .post {
     background-color: var(--color-secondary-bg);
@@ -194,11 +208,22 @@ footer {
     font-size: 80%;
     margin-top: calc(var(--base-unit) * 10);
 }
-footer a {
+footer a, footer p {
     color: var(--color-secondary-font);
+    line-height: 1.25;
+}
+footer a {
+    text-decoration: underline;
+    font-size: 90%;
+}
+footer li {
+    margin-bottom: var(--base-unit);
 }
 footer a:hover {
     color: var(--color-link);
+}
+footer > p {
+    margin-bottom: calc(var(--base-unit)*3);
 }
 
 /* media queries < 1100 */

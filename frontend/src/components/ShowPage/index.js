@@ -70,7 +70,7 @@ const ShowPage = () => {
                 <div>
                     <article className="showPage">
                         <figure>
-                            <img src={post.mediaUrl} alt="media" />
+                            <img src={PlaceholderPicture} alt="media" />
                         </figure>
                         <aside>
                             <div className="top">
@@ -110,12 +110,13 @@ const ShowPage = () => {
                             </div>
                         </aside>
                     </article>
+                    { related.length > 0 && (
                     <div className="related">
-                        <h3>More from <strong><a href={`/${post_user.username}`}>{post_user.username}</a></strong></h3>
+                        <h3>More from <strong><a href={`/users/${post_user.username}`}>{post_user.username}</a></strong></h3>
                         <div className="grid">
                             {related?.map(relatedPost => <PostIndexItem post={relatedPost} key={relatedPost.id}/>)}
                         </div>
-                    </div>
+                    </div> )}
                 </div>
             </div>
         )

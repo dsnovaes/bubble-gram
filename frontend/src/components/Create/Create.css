@@ -73,7 +73,7 @@
     transition: 0.25s all;
 }
 
-.mockupPost {
+.polaroid {
     background-color: white;
     padding: calc(var(--base-unit)*2);
     box-shadow: 0 0 calc(var(--base-unit) * 4) var(--color-black-transparent);
@@ -81,20 +81,20 @@
     width:300px;
     margin: calc(var(--base-unit)*4) auto;
 }
-.mockupPost .username {
+.polaroid .username {
     margin-bottom: calc(var(--base-unit)*2);
     color: black;
     display: flex;
     font-weight: bold;
     align-items: center;
 }
-.mockupPost .username img, .mockupPost .username svg {
+.polaroid .username img, .polaroid .username svg {
     border-radius: 50%;
     width: calc(var(--base-unit) * 9);
     margin-right: calc(var(--base-unit)*2);
     height: auto;
 }
-.mockupPost figure img {
+.polaroid figure img {
     width: 100%;
     height: 100%;
     object-fit: cover;

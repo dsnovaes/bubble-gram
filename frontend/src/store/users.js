@@ -24,8 +24,8 @@ export const removeUsers = () => {
   }
 }
   
-export const fetchUsers = () => async dispatch => {
-  const res = await csrfFetch("/api/users");
+export const fetchUsers = (type) => async dispatch => {
+  const res = await csrfFetch(`/api/users?type=${type}`);
   if(res.ok) {
     const users = await res.json();
     dispatch(receiveUsers(users));
@@ -58,7 +58,7 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_USER:
       return { ...state, [action.payload.user.id]: action.payload.user };
     case RECEIVE_USERS:
-    return { ...action.users };
+      return { ...action.users };
     case REMOVE_USERS:
       return {};
     default:

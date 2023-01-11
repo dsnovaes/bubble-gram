@@ -180,3 +180,20 @@ strong {
     display: flex;
     align-items: center;
 }
+
+
+@media screen and (max-width: 1100px) {
+    .grid {
+        column-gap: calc(var(--base-unit));
+        row-gap: calc(var(--base-unit));
+    }
+    .grid img {
+        border-radius: 0;
+    }
+    .grid .thumbnail:hover {
+        scale: 1;
+    }
+    .grid .thumbnail .hoverInfo {
+        border-radius: 0;
+    }
+}

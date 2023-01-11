@@ -52,7 +52,7 @@ export const createComment = (comment) => async (dispatch) => {
       }
   });
   const data = await response.json();
-  dispatch(receiveComment(data.comment));
+  dispatch(receiveComment(data));
   return response;
 };
 
@@ -68,7 +68,7 @@ export const updateComment = (comment) => async (dispatch) => {
         }
     });
     const data = await response.json();
-    dispatch(receiveComment(data.comment));
+    dispatch(receiveComment(data));
     return response;
 };
 
@@ -82,10 +82,10 @@ export const deleteComment = (commentId) => async dispatch => {
 
 
 const commentsReducer = (state = {}, action) => {
-  // debugger
   switch (action.type) {
     case RECEIVE_COMMENT:
-      return { ...state, [action.comment.id]: action.comment };
+      // debugger
+      return { ...state, [action.payload.comment.id]: action.payload.comment };
     case RECEIVE_COMMENTS:
     return { ...action.comments };
     case REMOVE_COMMENTS:

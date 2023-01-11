@@ -1,21 +1,25 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, removePosts } from '../../store/posts'
+import { fetchUsers } from '../../store/users'
 import Header from "../Header"
 import PostFeed from "../PostFeed"
 import ProfilePicture from '../ProfilePicture';
+import SuggestedUser from '../SuggestedUser';
 import PlaceholderPicture from "../../assets/baybridge.jpg"
 import "./Feed.css"
 
+
 const Feed = () => {
     const sessionUser = useSelector(state => state.session.user);
-    const dispatch = useDispatch();
-
     const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
+    const users = useSelector(state => state.users ? Object.values(state.users) : []);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         document.title="Feed - BubbleGram"
-        dispatch(fetchPosts(sessionUser.id, "feed"));
+        dispatch(fetchPosts(sessionUser.id, "feed")).then(()=>window.scrollTo(0,0))
+        dispatch(fetchUsers("suggestions"))
         return () => dispatch(removePosts());
     }, [dispatch])
 
@@ -43,23 +47,15 @@ const Feed = () => {
                             </div>
                             <div className="suggestions">
                                 <h3>Suggestions for you</h3>
-                                <div className="suggestedUser">
-                                    <a href="/user.username">
-                                        <div className="profile">
-                                            <img src={PlaceholderPicture} alt="user.name" />
-                                        </div>
-                                        <div className="text">
-                                            <h2>user.username</h2>
-                                            <h3>user.name</h3>
-                                        </div>
-                                    </a>
-
-                                    <a href="/" className="follow">Follow</a>
-
-                                </div>
+                                {users?.map(user => <SuggestedUser user={user} key={user.id} />)}
                             </div>
                             <footer>
-                                <a href="https://github.com/dsnovaes/bubble-gram">About this project on Github</a>
+                                <p>Disclaimer: assets and the general idea of this product is either property of Meta© and/or inspired on Instagram©</p>
+                                <p>This product was built for educational purposes only by Diego Novaes.</p>
+                                <ul>
+                                    <li><a href="https://github.com/dsnovaes/bubble-gram">About this project on Github</a></li>
+                                    <li><a href="https://linkedin.com/in/diegonovaes">LinkedIn of Diego Novaes</a></li>
+                                </ul>
                             </footer>
                         </aside>
                     </div>

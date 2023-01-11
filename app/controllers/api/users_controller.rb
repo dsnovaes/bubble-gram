@@ -4,12 +4,13 @@ class Api::UsersController < ApplicationController
     before_action :require_logged_in, only: [:update]
 
     def index
-        if params[:query]
+        case params[:type]
+        when "query"
             @users = User.where("username LIKE ?", params[:query])
-        elsif params[:suggestions]
+        when "suggestions"
             followingsAndCurrentUser = current_user.followings.pluck("following_id")
             followingsAndCurrentUser.push(current_user.id)
-            @users = User.where("id != ?",followingsAndCurrentUser).limit(3)
+            @users = User.where.not(id: followingsAndCurrentUser).limit(3)
         else
             @users = User.all
             puts "#=#=#=#=#=#= number of users #{@users.length}"
