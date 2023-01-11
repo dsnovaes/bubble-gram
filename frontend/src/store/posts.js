@@ -81,7 +81,7 @@ const postsReducer = (state = {}, action) => {
     case RECEIVE_POSTS:
       return { ...action.posts };
     case RECEIVE_REACTION:
-      debugger
+      // debugger
       // return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
     case REMOVE_POSTS:
       return {};

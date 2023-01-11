@@ -57,7 +57,9 @@
     font-weight: bold;
 }
 .showPage aside .comments {
-    padding: calc(var(--base-unit) * 3);
+    padding-top: calc(var(--base-unit) * 3);
+    padding-left: calc(var(--base-unit) * 3);
+    width: 100%;
     overflow-y: scroll;
     height: 340px;
 }

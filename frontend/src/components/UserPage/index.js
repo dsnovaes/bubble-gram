@@ -50,7 +50,12 @@ const UserPage = () => {
                     </div>
                     { (sessionUser.id == user.id || user.followingIds.includes(sessionUser.id) || !user.privateProfile) ? (
                     <div className="grid">
-                        {posts.map(post => <PostIndexItem post={post} key={post.id}/>)}
+                        { posts.length ? (
+                            posts.map(post => <PostIndexItem post={post} key={post.id}/>)
+                        ) : 
+                        <div className="privateProfile">
+                            <h2>No posts yet</h2>
+                        </div> }
                     </div>
                     ) : 
                     <div className="privateProfile">

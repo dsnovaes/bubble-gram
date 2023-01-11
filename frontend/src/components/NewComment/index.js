@@ -29,7 +29,7 @@ const NewComment = ({postId}) => {
         e.preventDefault()
         setErrors([]);
         comment = {...comment, body}
-        return dispatch(createComment(comment)).then(() => history.push(`/posts/${postId}`))
+        return dispatch(createComment(comment)).then(() => setBody(""))
         .catch(async (res) => {
             let data;
             try {

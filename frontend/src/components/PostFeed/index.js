@@ -36,7 +36,7 @@ const PostFeed = ({post}) => {
                 </div>
                 { post.commentIds.length > 0 &&
                     <div className="viewComments">
-                        { post.commentIds.length === 1 ? <p><a href="/modal">View comment</a></p> : <p><a href="/modal">View all {post.commentIds.length} comments</a></p> }
+                        { post.commentIds.length === 1 ? <p><a href={`/posts/${post.id}`}>View comment</a></p> : <p><a href={`/posts/${post.id}`}>View all {post.commentIds.length} comments</a></p> }
                     </div>
                 }
                 <div className="date">

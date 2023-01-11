@@ -227,7 +227,7 @@ footer > p {
 }
 
 /* media queries < 1100 */
-
+/* TABLET AND MOBILE */
 @media screen and (max-width: 1100px) {
     .container {
         grid-template-columns: 70px 1fr;

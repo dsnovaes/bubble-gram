@@ -52,7 +52,7 @@ function Settings() {
     return (
       <div className="container">
           <Header />
-          <section className="signup">
+          <section className="signup settings">
               <div className="loginOrSignUp">
                 <h1>Settings</h1>
                 <form onSubmit={handleSubmit}>
