@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from "react-redux";
-import { useHistory } from 'react-router-dom';
-import { fetchComment, createComment } from "../../store/comments";
+import { createComment } from "../../store/comments";
 import "./NewComment.css"
 
 const NewComment = ({postId}) => {
-    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);

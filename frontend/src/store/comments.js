@@ -2,6 +2,7 @@ import csrfFetch from './csrf';
 
 const RECEIVE_COMMENT = 'comments/receiveComment';
 const RECEIVE_COMMENTS = 'comments/receiveComments';
+const REMOVE_COMMENT = 'comments/removeComment';
 const REMOVE_COMMENTS = 'comments/removeComments';
 
 const receiveComment = (comment) => {
@@ -15,6 +16,13 @@ const receiveComments = (comments) => {
   return {
     type: RECEIVE_COMMENTS,
     comments
+  };
+};
+
+const removeComment = (commentId) => {
+  return {
+    type: REMOVE_COMMENT,
+    commentId
   };
 };
 
@@ -75,8 +83,7 @@ export const updateComment = (comment) => async (dispatch) => {
 export const deleteComment = (commentId) => async dispatch => {
   const res = await csrfFetch(`/api/comments/${commentId}`, {method: "DELETE"});
   if(res.ok) {
-    const follow = await res.json();
-    dispatch(removeComments());
+    dispatch(removeComment(commentId));
   }
 }
 
@@ -88,8 +95,12 @@ const commentsReducer = (state = {}, action) => {
       return { ...state, [action.payload.comment.id]: action.payload.comment };
     case RECEIVE_COMMENTS:
     return { ...action.comments };
+    case REMOVE_COMMENT:
+      const nextState = { ...state }
+      delete nextState[action.commentId]
+      return nextState;
     case REMOVE_COMMENTS:
-      return {};
+        return {};
     default:
       return state;
   }

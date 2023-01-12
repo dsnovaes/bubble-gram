@@ -26,7 +26,7 @@ const FollowButton = ({user}) => {
         if (user.followerIds.includes(sessionUser.id)) {
             setIsFollowing(true)
         }
-    },[dispatch])
+    },[dispatch,sessionUser.id,user.followerIds])
 
     if (sessionUser) {
 

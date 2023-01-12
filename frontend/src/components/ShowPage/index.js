@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { fetchPost, removePosts, updatePost, deletePost } from '../../store/posts'
@@ -31,12 +31,12 @@ const ShowPage = () => {
     useEffect(() => {
         dispatch(fetchPost(postIdInt));
         return () => dispatch(removePosts());
-    }, [dispatch,postId])
+    }, [dispatch,postId,postIdInt])
 
     useEffect(() => {
         dispatch(fetchComments(postIdInt));
         return () => dispatch(removeComments());
-    }, [dispatch,postId])
+    }, [dispatch,postId,postIdInt])
 
 
     useEffect(()=>{
@@ -70,7 +70,7 @@ const ShowPage = () => {
                 <div>
                     <article className="showPage">
                         <figure>
-                            <img src={PlaceholderPicture} alt="media" />
+                            <img src={post.mediaUrl} alt="media" />
                         </figure>
                         <aside>
                             <div className="top">
@@ -104,7 +104,7 @@ const ShowPage = () => {
                                     <LikeButton post={post} />
                                     <button className="commentBtn"><svg aria-label="Comment" color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></path></svg></button>
                                 </div>  
-                                <p className="likesCount">{post.reactionIds.length} likes</p>
+                                <p className="likesCount">{post.reactionIds.length} like{post.reactionIds.length > 1 ? "s" : null }</p>
                                 <time>{new Date(post.createdAt).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric'})}</time>
                                 <NewComment postId={post.id} />
                             </div>

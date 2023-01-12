@@ -6,7 +6,7 @@ import Header from "../Header"
 import PostFeed from "../PostFeed"
 import ProfilePicture from '../ProfilePicture';
 import SuggestedUser from '../SuggestedUser';
-import PlaceholderPicture from "../../assets/baybridge.jpg"
+// import PlaceholderPicture from "../../assets/baybridge.jpg"
 import "./Feed.css"
 
 
@@ -21,7 +21,7 @@ const Feed = () => {
         dispatch(fetchPosts(sessionUser.id, "feed")).then(()=>window.scrollTo(0,0))
         dispatch(fetchUsers("suggestions"))
         return () => dispatch(removePosts());
-    }, [dispatch])
+    }, [dispatch,sessionUser.id])
 
     if (posts) {
         return (
@@ -30,8 +30,10 @@ const Feed = () => {
                 <div className="feed">
                     <div className="center">
                         <section className="timeline">
-                            {posts?.map(post => <PostFeed post={post} key={post.id}/>)}
-                            
+                            {posts.length ? (
+                                posts?.map(post => <PostFeed post={post} key={post.id}/>)
+                                ):("you should follow someone")
+                            }                            
                         </section>
                         <aside>
                             <div className="myProfile">

@@ -1,7 +1,9 @@
 import csrfFetch from './csrf';
+import {storeCurrentUser,setCurrentUser} from "./session"
 
 const RECEIVE_USER = 'users/receiveUser';
 const RECEIVE_USERS = 'users/receiveUsers';
+const UPDATE_PROFILE_PICTURE = 'users/updateProfilePic';
 const REMOVE_USERS = 'users/removeUsers';
 
 const receiveUser = (user) => {
@@ -31,6 +33,16 @@ export const fetchUsers = (type) => async dispatch => {
     dispatch(receiveUsers(users));
   }
 }
+
+export const updateProfilePic = async userData => {
+  const response = await csrfFetch(`/api/users/${userData.id}`, {
+      method: "PUT",
+      body: userData
+  });
+  // const data = await response.json();
+  // dispatch(receiveUser(data.user));
+  // return response;
+}
   
 export const fetchUser = (username) => async dispatch => {
   const res = await csrfFetch(`/api/users/${username}?username=${username}`);
@@ -48,9 +60,23 @@ export const updateUser = (user) => async (dispatch) => {
         })
     });
     const data = await response.json();
-    dispatch(receiveUser(data.user));
-    return response;
+    dispatch(receiveUser(data));
+    return data.user;
 };
+
+export const deleteProfilePicture = (user) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/${user.id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        user: { profilePicture: null }
+      })
+  });
+  const data = await response.json();
+  dispatch(receiveUser(data));
+  storeCurrentUser(data.user);
+  dispatch(setCurrentUser(data.user));
+  return data.user;
+}
 
 
 const usersReducer = (state = {}, action) => {

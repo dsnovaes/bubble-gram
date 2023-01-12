@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Header from "../Header"
 import { fetchUser, removeUsers } from "../../store/users"
 import "./UserPage.css"
@@ -48,7 +48,7 @@ const UserPage = () => {
                             </div>
                         </div>
                     </div>
-                    { (sessionUser.id == user.id || user.followingIds.includes(sessionUser.id) || !user.privateProfile) ? (
+                    { (sessionUser.id === user.id || user.followingIds.includes(sessionUser.id) || !user.privateProfile) ? (
                     <div className="grid">
                         { posts.length ? (
                             posts.map(post => <PostIndexItem post={post} key={post.id}/>)

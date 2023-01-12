@@ -60,7 +60,7 @@ const Header = () => {
                         <ul>
                             <li><a href="/settings">Settings</a></li>
                             {/* <li><a href="/settings#appearance">Switch appearance</a></li> */}
-                            <li><a onClick={logout}>Logout</a></li>
+                            <li><a href="/logout" onClick={logout}>Logout</a></li>
                         </ul>
                     </div>
                 )}

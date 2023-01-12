@@ -52,7 +52,6 @@ export const unFollow = (currentUser, followingId) => async dispatch => {
         "Accept": "application/json"
     }});
   if(res.ok) {
-    const follow = await res.json();
     dispatch(removeFollows());
   }
 }

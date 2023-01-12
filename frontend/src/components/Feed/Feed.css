@@ -46,8 +46,9 @@
 .feed aside img {
     border-radius: 50%;
 }
-.feed aside .profile img {
+.feed aside .profile img, .feed aside .profile svg {
     width: calc(var(--base-unit)*18);
+    height: auto;
 }
 .feed aside .suggestedUser {
     display: flex;
@@ -92,7 +93,16 @@
     border:0;
     display: flex;
     align-items: center;
+    padding: calc(var(--base-unit)*2);
     font-weight: bold;
+    border:1px solid transparent;
+}
+.feed aside .suggestions button svg {
+    margin-left: var(--base-unit);
+}
+.feed aside .suggestions button:hover {
+    border-color:var(--color-border);
+    border-radius: var(--base-unit);
 }
 
 
