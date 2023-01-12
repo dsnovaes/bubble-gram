@@ -1,0 +1,98 @@
+.search {
+    background-color: var(--color-secondary-bg);
+    position: fixed;
+    top: 0;
+    left:301px;
+    width: 300px;
+    height: 100vh;
+    border-top-right-radius: calc(var(--base-unit)*3);
+    border-bottom-right-radius: calc(var(--base-unit)*3);
+    border-right: 1px solid var(--color-border);
+    z-index: 1000;
+}
+.search .top {
+    display: flex;
+    justify-content: space-between;
+    padding: calc(var(--base-unit)*8) calc(var(--base-unit)*4) 0;
+}
+.search .top button {
+    background-color: transparent;
+    border: 0;
+    font-size: 140%;
+}
+.search h2 {
+    font-size: 140%;
+    font-weight: bold;
+}
+.search form {
+    border-bottom: 1px solid var(--color-border);
+    padding: calc(var(--base-unit)*4);
+}
+.search input {
+    background-color: var(--color-primary-bg);
+    color: var(--color-primary-font);
+    border-radius: calc(var(--base-unit)*2);
+    border: 1px solid transparent;
+    padding: calc(var(--base-unit)*3);
+    width: 100%;
+    transition: 0.25s all;
+}
+.search input:focus {
+    outline: 0;
+    border-color: var(--color-primary-font);
+    transition: 0.25s all;
+}
+.search ul.results {
+    padding-top: calc(var(--base-unit)*2);
+}
+.search ul.results h3 {
+    font-weight: bold;
+    padding: calc(var(--base-unit)*4);
+}
+.search ul.results li a {
+    display: flex;
+    padding: calc(var(--base-unit)*4);
+    font-weight: bold;
+    color: var(--color-primary-font);
+    align-items: center;
+    font-size: 90%;
+}
+.search ul.results li a small {
+    font-weight: normal;
+    color: var(--color-secondary-font);
+}
+.search ul.results li a:hover {
+    background-color: var(--color-primary-bg);
+}
+.search ul.results li img, .search ul.results li svg {
+    width: calc(var(--base-unit)*10);
+    height: calc(var(--base-unit)*10);
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: calc(var(--base-unit)*2);
+}
+.search .noResults {
+    text-align: center;
+}
+
+.search .noResults svg {
+    font-size: 300%;
+    display: block;
+    margin: 100px auto 10px;
+    color: var(--color-secondary-font);
+}
+
+@media screen and (max-width: 1100px) {
+    .search {
+        left: 71px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .search {
+        left: 71px;
+        width: calc(100vw - 71px);
+        border: 0;
+        border-radius: 0;
+    }
+}

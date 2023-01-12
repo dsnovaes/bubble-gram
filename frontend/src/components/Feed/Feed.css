@@ -10,11 +10,9 @@
     flex-wrap:wrap;
     gap: calc(var(--base-unit) * 7);
 }
-.top h2 {
+.feed .top h2 {
     font-weight: bold;
     font-size: 90%;
-}
-.feed .top h2 {
     margin-left: calc(var(--base-unit) * 2);
 }
 .gradientFont {
@@ -138,7 +136,7 @@
     width: 100%;
     height: auto;
 }
-.top {
+.feed .top {
     padding: calc(var(--base-unit) * 3);
 }
 .top a {

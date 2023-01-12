@@ -60,6 +60,18 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def search
+
+        query=params[:query]
+        @users = User.where('name ILIKE ? OR username ILIKE ? OR bio ILIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+        if @users.length > 0
+            render :index
+        else
+            render json: ["Sorry, we did not find any results for #{query}, try another search"], status: 404
+        end
+
+    end
+
     def update
         @user = User.find(params[:id])
         if @user.update(user_params)
