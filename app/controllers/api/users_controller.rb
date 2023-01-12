@@ -13,7 +13,6 @@ class Api::UsersController < ApplicationController
             @users = User.where.not(id: followingsAndCurrentUser).limit(3)
         else
             @users = User.all
-            puts "#=#=#=#=#=#= number of users #{@users.length}"
         end
         render :index
     end

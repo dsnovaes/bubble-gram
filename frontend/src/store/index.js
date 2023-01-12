@@ -6,6 +6,7 @@ import users from "./users"
 import comments from "./comments"
 import follows from "./follows"
 import reactions from "./reactions"
+import results from "./results"
 
 const rootReducer = combineReducers({
     session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     users,
     comments,
     follows,
-    reactions
+    reactions,
+    results
 });
 
 
