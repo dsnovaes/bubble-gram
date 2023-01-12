@@ -30,8 +30,10 @@ const Feed = () => {
                 <div className="feed">
                     <div className="center">
                         <section className="timeline">
-                            {posts?.map(post => <PostFeed post={post} key={post.id}/>)}
-                            
+                            {posts.length ? (
+                                posts?.map(post => <PostFeed post={post} key={post.id}/>)
+                                ):("you should follow someone")
+                            }                            
                         </section>
                         <aside>
                             <div className="myProfile">

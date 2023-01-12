@@ -20,6 +20,7 @@ const ViewComment = ({comment}) => {
             body: newBody
         }
         if (newBody !== comment.body) dispatch(updateComment(editedComment))
+
     }  
 
     if (comment) {

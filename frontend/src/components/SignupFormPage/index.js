@@ -75,7 +75,7 @@ function SignupFormPage() {
                   />
                 <label htmlFor="bio">Bio <em>(optional)</em></label>
                   <textarea name="bio" value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Bio">{bio}</textarea>
-                <label>
+                <label className="d-none">
                   <input type="checkbox" checked={privateProfile} name="privateProfile" value={privateProfile} onChange={() => setPrivateProfile(!privateProfile)} /> 
                   <div>
                     Private Profile <em>(only those who follow you can see your posts)</em>

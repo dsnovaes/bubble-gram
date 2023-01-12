@@ -9,7 +9,7 @@ const PostIndexItem = ({post}) => {
                     <div><FaHeart />{post.reactionIds.length}</div>
                     <div><FaComment /> {post.commentIds.length}</div>
                 </div>
-                <img src={PlaceholderPicture} alt="thumbnail" />
+                <img src={post.mediaUrl} alt="thumbnail" />
             </a>
         </div>
     )

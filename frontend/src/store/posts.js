@@ -1,5 +1,5 @@
 import csrfFetch from './csrf';
-// import {RECEIVE_REACTION} from "./reactions"
+import {RECEIVE_REACTION, REMOVE_REACTION} from "./reactions"
 
 const RECEIVE_POST = 'posts/receivePost';
 const RECEIVE_POSTS = 'posts/receivePosts';
@@ -78,9 +78,16 @@ const postsReducer = (state = {}, action) => {
       return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
     case RECEIVE_POSTS:
       return { ...action.posts };
-    // case RECEIVE_REACTION:
-      // debugger
-      // return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
+    case RECEIVE_REACTION:
+      const nextState = { ...state }
+      let post = nextState[action.payload.reaction.postId]
+      post.reactionIds.push(action.payload.reaction.id)
+      return nextState;
+    case REMOVE_REACTION:
+      const nextStateRemove = { ...state }
+      let postRemove = nextStateRemove[action.payload]
+      postRemove.reactionIds.pop()
+      return nextStateRemove;
     case REMOVE_POSTS:
       return {};
     default:

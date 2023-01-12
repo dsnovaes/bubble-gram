@@ -17,6 +17,9 @@ header {
 
 .insideHeader img {
     border-radius: 12px;
+    width:calc(var(--base-unit) * 6);
+    height:calc(var(--base-unit) * 6);
+    object-fit: cover;
 }
 .insideHeader span {
     margin-left: calc(var(--base-unit) * 4);
@@ -54,10 +57,6 @@ header {
 .insideHeader nav a:hover svg, .insideHeader nav a:hover img {
     scale: 1.25;
     transition: 0.25s scale;
-}
-.insideHeader img {
-    width:calc(var(--base-unit) * 6);
-    height:calc(var(--base-unit) * 6);
 }
 .insideHeader h1 a {
     width: calc(var(--base-unit) * 30);
