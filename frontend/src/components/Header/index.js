@@ -46,7 +46,7 @@ const Header = () => {
     return (
         <header>
         {showSearch && (
-                <Search />
+                <Search setShowSearch={setShowSearch} />
             )}
             <div className="insideHeader">
                 <h1>

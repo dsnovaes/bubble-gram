@@ -64,6 +64,14 @@ export const updateUser = (user) => async (dispatch) => {
     return data.user;
 };
 
+export const searchUser = (query) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/search/${query}`)
+  if (response.ok) {
+    const searchResults = await response.json();
+    dispatch(receiveUsers(searchResults));
+  }
+}
+
 export const deleteProfilePicture = (user) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${user.id}`, {
       method: "PUT",

@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-    wrap_parameters include: User.attribute_names + ["password", "profile_picture"]
+    wrap_parameters include: User.attribute_names + ["password", "profile_picture", "query"]
 
     before_action :require_logged_in, only: [:update]
 

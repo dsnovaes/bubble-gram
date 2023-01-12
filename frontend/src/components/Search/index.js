@@ -1,42 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import SearchResult from "../SearchResult"
+import { removeUsers, searchUser } from "../../store/users"
+import { useDispatch, useSelector } from 'react-redux';
 import {RiCloseCircleFill,RiEmotionSadLine} from "react-icons/ri"
 import "./Search.css"
 
-const Search = () => {
+const Search = ({setShowSearch}) => {
     const [query,setQuery] = useState("");
     const [hasSearched,setHasSearched] = useState(false);
+    const users = useSelector(state => state.users ? Object.values(state.users) : []);
+    const dispatch = useDispatch();
     
     const closeSearch = () => {
         console.log("close search")
+        setShowSearch(false)
     }
 
     const handleSubmit = e => {
         e.preventDefault()
+        setHasSearched(true)
+        dispatch(searchUser(query))
     }
 
     useEffect(()=>{
-        console.log("toma no useEffect")
+        console.log("will use this?")
         // setHasSearched(true)
         // searchInput.focus()
+        return () => removeUsers()
     },[])
-
-    const results = [{
-            name: "Diego Novaes",
-            profilePictureUrl: "https://s2.glbimg.com/1-GgNUGubEb9hS-OaNsKKYqRuJg=/478x215:2629x1425/fit-in/1030x580/middle/smart/filters:strip_icc():strip_exif():format(webp)/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2023/9/Y/AQuGgTTEiUeh0xDzE4xQ/fup20230111406.jpg",
-            username: "dsnovaes",
-            id: 1
-        },{
-            name: "Coding Memes",
-            username: "codingmemes",
-            id: 2
-        },{
-            name: "John Mayer",
-            profilePictureUrl: "https://s2.glbimg.com/1-GgNUGubEb9hS-OaNsKKYqRuJg=/478x215:2629x1425/fit-in/1030x580/middle/smart/filters:strip_icc():strip_exif():format(webp)/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2023/9/Y/AQuGgTTEiUeh0xDzE4xQ/fup20230111406.jpg",
-            username: "johnmayer",
-            id: 3
-        }
-    ]
     
 
     return (
@@ -50,9 +41,9 @@ const Search = () => {
             </form>
             <ul className="results">
                 <h3>Results</h3>
-                {results?.map(result=> <SearchResult user={result} key={result.id} />)}
+                {users?.map(result=> <SearchResult user={result} key={result.id} />)}
             </ul>
-            {hasSearched && results.length === 0 && (
+            {hasSearched && users.length === 0 && (
             <p className="noResults">
                 <RiEmotionSadLine />
                 No results found for <strong>{query}</strong>

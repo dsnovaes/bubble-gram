@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     resources :follows, only: [:create, :destroy, :update]
     resources :reactions, only: [:create, :destroy, :update]
     resource :session, only: [:show, :create, :destroy]
-    resources :users, only: [:index, :create, :update, :show]
+    resources :users, only: [:index, :create, :update, :show] do
+      collection do
+        get "/search/:query", to: "users#search", :as => "search"
+      end
+    end
     resources :posts, only: [:index, :show, :create, :update, :destroy]
     resources :comments, only: [:index, :create, :update, :destroy]
   end
