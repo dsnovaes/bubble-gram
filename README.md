@@ -1,5 +1,5 @@
 # BubbleGram (Instagram-Clone)
-<img width="1334" alt="Screenshot 2023-01-13 at 09 57 08" src="https://user-images.githubusercontent.com/67075160/212388073-cd01bba1-1d34-4155-b032-4c7c75536c72.png">
+![main](https://user-images.githubusercontent.com/67075160/212391325-b612723b-0f04-4bff-9786-a16479b5545e.gif)
 
 ## Live Version
 Check out the live site → [https://bubblegram.onrender.com/](https://bubblegram.onrender.com/)
@@ -124,6 +124,7 @@ const Feed = () => {
 
 ### Future implementations
 
+- Save the preference between light and dark mode (they already exist, but it's automatically loaded based on the OS preference - the user can't choose which color scheme to use)
 - Possibility to protect your posts, having a private profile
 - Attaching a location to your posts, so not only users could see where you took a specific photo, but they could also see posts published at that location
 - Stories
