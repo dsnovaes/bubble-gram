@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :update, :destroy]
   end
 
-  # get '*path', to: "static_pages#frontend_index"
+  get '*path', to: "static_pages#frontend_index"
 
 end
