@@ -69,7 +69,7 @@ const ShowPage = () => {
                 { sessionUser ?  <Header /> : <div></div> }
                 <div>
                     <article className="showPage">
-                        <figure onDoubleClick={()=>alert("it worked")}>
+                        <figure>
                             <img src={post.mediaUrl} alt="media" />
                         </figure>
                         <aside>
