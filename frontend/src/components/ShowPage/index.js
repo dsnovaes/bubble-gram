@@ -5,8 +5,8 @@ import { fetchPost, removePosts, updatePost, deletePost } from '../../store/post
 import { fetchComments, removeComments } from '../../store/comments'
 import './ShowPage.css'
 import moment from 'moment';
-import ProfilePicture from '../ProfilePicture';
 import PostIndexItem from "../PostIndexItem"
+import ProfilePicture from '../ProfilePicture'
 import LikeButton from "../Like"
 import NewComment from '../NewComment';
 import Header from "../Header"
