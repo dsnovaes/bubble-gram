@@ -202,11 +202,11 @@ require "open-uri"
     Follow.create!(follower_id: demo.id, following_id: archdigest.id, status: "accepted")
 
     User.all.each do |user|
-        Follow.create!(follower_id: diego.id, following_id: user.id) unless user.id == diego.id
+        Follow.create!(follower_id: diego.id, following_id: user.id, status: "accepted") unless user.id == diego.id
     end
 
     # momo and titta friendship
-    Follow.create!(follower_id: momo.id, following_id: titta.id)
+    Follow.create!(follower_id: momo.id, following_id: titta.id, status: "accepted")
     titta.posts.each_with_index do |post,i|
         Reaction.create!(post_id: post.id, user_id: momo.id) if i.even?
     end
