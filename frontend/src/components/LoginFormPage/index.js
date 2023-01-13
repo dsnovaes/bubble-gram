@@ -15,7 +15,7 @@ const LoginFormPage = () => {
     if (sessionUser) return <Redirect to="/" />;
 
     const handleDemoLogin = (e) => {
-        return dispatch(sessionActions.login({credential: "demo@gmail.com", password: "password"}))
+        return dispatch(sessionActions.login({credential: "demo@user.io", password: "password"}))
     }
 
     const handleSubmit = (e) => {
