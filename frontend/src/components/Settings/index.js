@@ -6,7 +6,6 @@ import { Redirect,useHistory } from 'react-router-dom';
 import {updateUser} from "../../store/users"
 import Header from "../Header"
 import "./Settings.css"
-import PlaceholderPicture from "../../assets/baybridge.jpg"
 import {deleteProfilePicture} from "../../store/users"
 import {storeCurrentUser,setCurrentUser} from "../../store/session"
 

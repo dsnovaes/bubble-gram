@@ -12,7 +12,6 @@ import NewComment from '../NewComment';
 import Header from "../Header"
 import ViewComment from '../ViewComment';
 import FollowButton from "../FollowButton"
-import PlaceholderPicture from "../../assets/baybridge.jpg"
 
 const ShowPage = () => {
     const {postId} = useParams()

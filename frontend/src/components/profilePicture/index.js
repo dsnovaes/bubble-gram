@@ -1,4 +1,3 @@
-import PlaceholderPicture from "../../assets/baybridge.jpg"
 const ProfilePicture = ({user}) => {
 
     if (user.profilePictureUrl) {
