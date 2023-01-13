@@ -12,7 +12,6 @@ const Search = ({setShowSearch}) => {
     const dispatch = useDispatch();
     
     const closeSearch = () => {
-        console.log("close search")
         setShowSearch(false)
     }
 
@@ -21,13 +20,10 @@ const Search = ({setShowSearch}) => {
         dispatch(removeResults())
         setHasSearched(true)
         document.activeElement.blur();
-        dispatch(searchUser(query)).then(()=>{
-            console.log("these are the results", results)
-        })
+        dispatch(searchUser(query))
     }
 
     useEffect(()=>{
-        console.log("will use this?")
         if (!hasSearched) dispatch(removeResults())
         // setHasSearched(true)
         // searchInput.focus()

@@ -4,9 +4,9 @@ class Api::FollowsController < ApplicationController
     before_action :require_logged_in
 
     def create
-        puts "#= #= #= #= enters create action"
+
         check_if_exists = Follow.find_by(follower_id: current_user.id, following_id: follow_params[:following_id])
-        puts check_if_exists
+
         # case check_if_exists.status
         #     puts "enters case conditional statement"
         #     puts "this is the value of the status #{check_if_exists.status}"
@@ -23,14 +23,8 @@ class Api::FollowsController < ApplicationController
         #     puts "enters 'else' conditional"
             
             @follow = Follow.new(follow_params)
-            puts "#= #= #= #= this is the follow instance variable"
-            puts @follow
-
             following = User.find(follow_params[:following_id]) # searches for the user who will be followed
             @follow.status = "accepted" unless following.private_profile # profile is public
-
-            puts "#= #= #= #= this is the follow status"
-            puts @follow.status
             
             if @follow.follower_id == @follow.following_id
                 render json: { errors: "user can't follow themself" }, status: :unprocessable_entity

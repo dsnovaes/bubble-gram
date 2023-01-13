@@ -72,7 +72,6 @@ export const deletePost = (postId) => async (dispatch) => {
 };
 
 const postsReducer = (state = {}, action) => {
-  // debugger
   switch (action.type) {
     case RECEIVE_POST:
       return { ...state, [action.payload.post.id]: action.payload.post, user: action.payload.user, related: action.payload.related };
