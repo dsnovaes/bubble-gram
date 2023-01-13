@@ -5,6 +5,7 @@ const RECEIVE_USER = 'users/receiveUser';
 const RECEIVE_USERS = 'users/receiveUsers';
 const UPDATE_PROFILE_PICTURE = 'users/updateProfilePic';
 const REMOVE_USERS = 'users/removeUsers';
+const SEARCHED_USERS = 'users/searchResultUsers';
 
 const receiveUser = (user) => {
   return {
@@ -16,6 +17,13 @@ const receiveUser = (user) => {
 const receiveUsers = (users) => {
   return {
     type: RECEIVE_USERS,
+    users
+  };
+};
+
+const searchResultUsers = (users) => {
+  return {
+    type: SEARCHED_USERS,
     users
   };
 };
@@ -64,6 +72,14 @@ export const updateUser = (user) => async (dispatch) => {
     return data.user;
 };
 
+export const searchUser = (query) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/search/${query}`)
+  if (response.ok) {
+    const searchResults = await response.json();
+    dispatch(searchResultUsers(searchResults));
+  }
+}
+
 export const deleteProfilePicture = (user) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${user.id}`, {
       method: "PUT",
@@ -84,6 +100,8 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_USER:
       return { ...state, [action.payload.user.id]: action.payload.user };
     case RECEIVE_USERS:
+      return { ...action.users };
+    case SEARCHED_USERS:
       return { ...action.users };
     case REMOVE_USERS:
       return {};

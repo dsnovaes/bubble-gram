@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-    wrap_parameters include: User.attribute_names + ["password", "profile_picture"]
+    wrap_parameters include: User.attribute_names + ["password", "profile_picture", "query"]
 
     before_action :require_logged_in, only: [:update]
 
@@ -13,7 +13,6 @@ class Api::UsersController < ApplicationController
             @users = User.where.not(id: followingsAndCurrentUser).limit(3)
         else
             @users = User.all
-            puts "#=#=#=#=#=#= number of users #{@users.length}"
         end
         render :index
     end
@@ -58,6 +57,18 @@ class Api::UsersController < ApplicationController
         else
             render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
         end
+    end
+
+    def search
+
+        query=params[:query]
+        @users = User.where('name ILIKE ? OR username ILIKE ? OR bio ILIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+        if @users.length > 0
+            render :index
+        else
+            render json: ["Sorry, we did not find any results for #{query}, try another search"], status: 404
+        end
+
     end
 
     def update

@@ -69,7 +69,7 @@ const ShowPage = () => {
                 { sessionUser ?  <Header /> : <div></div> }
                 <div>
                     <article className="showPage">
-                        <figure>
+                        <figure onDoubleClick={()=>alert("it worked")}>
                             <img src={post.mediaUrl} alt="media" />
                         </figure>
                         <aside>
@@ -104,7 +104,7 @@ const ShowPage = () => {
                                     <LikeButton post={post} />
                                     <button className="commentBtn"><svg aria-label="Comment" color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></path></svg></button>
                                 </div>  
-                                <p className="likesCount">{post.reactionIds.length} like{post.reactionIds.length > 1 ? "s" : null }</p>
+                                <p className="likesCount">{post.reactionIds.length} like{post.reactionIds.length !== 1 ? "s" : null }</p>
                                 <time>{new Date(post.createdAt).toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric'})}</time>
                                 <NewComment postId={post.id} />
                             </div>

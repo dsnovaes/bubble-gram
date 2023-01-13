@@ -4,6 +4,8 @@
 }
 header {
     height: 100vh;
+    position: relative;
+    z-index: 999;
 }
 .insideHeader {
     background-color: var(--color-secondary-bg);
@@ -90,7 +92,7 @@ button.more:hover svg, button.more:hover span {
     background-color: var(--color-secondary-bg);
     border-radius: calc(var(--base-unit) * 2);
     width: max-content;
-    z-index: 10;
+    z-index: 1010;
 }
 .morePopOver a {
     border-radius: calc(var(--base-unit) * 2);
