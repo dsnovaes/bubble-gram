@@ -6,7 +6,6 @@ import Header from "../Header"
 import PostFeed from "../PostFeed"
 import ProfilePicture from '../ProfilePicture';
 import SuggestedUser from '../SuggestedUser';
-// import PlaceholderPicture from "../../assets/baybridge.jpg"
 import "./Feed.css"
 
 

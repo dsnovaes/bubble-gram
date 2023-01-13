@@ -3,7 +3,6 @@ import NewComment from "../NewComment"
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import LikeButton from "../Like"
-import PlaceholderPicture from "../../assets/baybridge.jpg" 
 
 const PostFeed = ({post}) => {
     const sessionUser = useSelector(state => state.session.user);

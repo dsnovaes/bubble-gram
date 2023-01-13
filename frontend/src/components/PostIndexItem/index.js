@@ -1,6 +1,5 @@
 import {FaComment,FaHeart} from "react-icons/fa"
 
-import PlaceholderPicture from "../../assets/baybridge.jpg"
 const PostIndexItem = ({post}) => {
     return (
         <div className="thumbnail">
