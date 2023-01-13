@@ -12,25 +12,31 @@ BubbleGram is an Instagram-Clone where you can create posts, comment on posts, l
 
 ### Posts
 Share a photo with an optional caption, edit it, delete it and see other posts
+
 <img width="1334" alt="Screenshot 2023-01-13 at 09 57 08" src="https://user-images.githubusercontent.com/67075160/212388678-30ee711a-916d-4481-b0fe-dcbb2594b01f.png">
 
 ### Comments
 Comment on posts, edit and delete their own comments, and see comments from other users on posts
+
 ![comment](https://user-images.githubusercontent.com/67075160/212390762-edc627b1-5150-4c7a-b036-d1f3676f42f8.gif)
 
 ### Likes
 Like posts and unlike posts previously liked by their own
+
 ![like](https://user-images.githubusercontent.com/67075160/212389591-c5da2ffc-755c-4fe1-8c1b-d21d65864545.gif)
 
 ### Follows
 Follow and unfollow (delete a follow relation) other users. That feature allows the user to see the posts of the user being followed in their own feed
+
 ![follow](https://user-images.githubusercontent.com/67075160/212390170-d10e378b-e178-4ec2-b1d4-6435b513390c.gif)
 
 ### Search users
+
 ![search](https://user-images.githubusercontent.com/67075160/212390522-92be4a2e-80bc-4a3e-ad1f-fa6ea95a8fc6.gif)
 
 ### Settings
 The user is able to upload a profile picture, change its personal info and change its password
+
 ![settings](https://user-images.githubusercontent.com/67075160/212390919-a3b6ffdd-eec9-4cbb-8579-c93cd9a2c102.gif)
 
 ## Libraries & Techonologies
