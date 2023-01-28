@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { fetchPost, removePosts, updatePost, deletePost } from '../../store/posts'
@@ -12,6 +12,8 @@ import NewComment from '../NewComment';
 import Header from "../Header"
 import ViewComment from '../ViewComment';
 import FollowButton from "../FollowButton"
+import { Modal } from '../Modal/Modal';
+import EditCaption from '../Modal/EditCaption';
 
 const ShowPage = () => {
     const {postId} = useParams()
@@ -19,6 +21,7 @@ const ShowPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const comments = useSelector(state => state.comments ? Object.values(state.comments) : []);
     const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
+    const [showModal, setShowModal] = useState(false);
     
     const post = posts.find(post => post.id === postIdInt);
     const post_user = posts[1]
@@ -48,14 +51,10 @@ const ShowPage = () => {
         }
     }
 
-    const handleEdit = () => {
-        let editingCaption = post.caption || ""
-        let newCaption = prompt("Edit the caption of this photo", editingCaption)
-        let editedCaption = {
-            id: post.id,
-            caption: newCaption
-        }
-        if (newCaption !== editingCaption) dispatch(updatePost(editedCaption))
+    const handleClick = () => {
+        setShowModal(true)
+        if (showModal) alert("about modal / modal should be open now");
+        // console.log("value of showModal:",showModal)
     }
 
     if (!sessionUser && post_user?.privateProfile) return <Redirect to="/login" />; 
@@ -89,10 +88,17 @@ const ShowPage = () => {
                                     <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
                                     <div>
                                         <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption} { new Date(post.createdAt).toISOString().split('.')[0] !== new Date(post.updatedAt).toISOString().split('.')[0] && ( <small>(edited)</small> ) }</p>
-                                        { sessionUser.id === post.userId && ( <p><button onClick={()=>handleEdit(post.id)}>Edit caption</button> <button onClick={()=>handleDelete(post.id)}>Delete post</button></p> ) }
+                                        { sessionUser.id === post.userId && ( <p><button onClick={()=>setShowModal(true)}>Edit caption</button> <button onClick={()=>handleDelete(post.id)}>Delete post</button></p> ) }
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>
                                 </div>
+
+                                {showModal && (
+                                    <Modal onClose={() => setShowModal(false)}>
+                                        <EditCaption post={post} setShowModal={setShowModal} />
+                                    </Modal>
+                                )}
+
                                 {/* loop actual comments */}
                                 {comments?.map(comment => <ViewComment comment={comment} key={comment.id}/>)}
 

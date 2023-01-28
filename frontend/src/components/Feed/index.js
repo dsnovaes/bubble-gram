@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, removePosts } from '../../store/posts'
 import { fetchUsers } from '../../store/users'
@@ -6,6 +6,7 @@ import Header from "../Header"
 import PostFeed from "../PostFeed"
 import ProfilePicture from '../ProfilePicture';
 import SuggestedUser from '../SuggestedUser';
+import Loading from "../Loading"
 import "./Feed.css"
 
 
@@ -14,15 +15,22 @@ const Feed = () => {
     const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
     const users = useSelector(state => state.users ? Object.values(state.users) : []);
     const dispatch = useDispatch();
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         document.title="Feed - BubbleGram"
-        dispatch(fetchPosts(sessionUser.id, "feed")).then(()=>window.scrollTo(0,0))
+        dispatch(fetchPosts(sessionUser.id, "feed"))
+            .then(() =>  setLoaded(true))
+            .then(()=>window.scrollTo(0,0))
         dispatch(fetchUsers("suggestions"))
         return () => dispatch(removePosts());
     }, [dispatch,sessionUser.id])
 
-    if (posts) {
+    if(!loaded){
+        return (
+          <Loading />
+        )
+      } else {
         return (
             <div className="container">
                 <Header />
@@ -30,7 +38,7 @@ const Feed = () => {
                     <div className="center">
                         <section className="timeline">
                             {posts.length ? (
-                                posts?.map(post => <PostFeed post={post} key={post.id}/>)
+                                posts?.reverse().map(post => <PostFeed post={post} key={post.id}/>)
                                 ):("you should follow someone")
                             }                            
                         </section>

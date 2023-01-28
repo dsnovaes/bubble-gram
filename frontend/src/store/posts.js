@@ -61,7 +61,7 @@ export const updatePost = (post) => async (dispatch) => {
         body: JSON.stringify(post)
     });
     const data = await response.json();
-    dispatch(receivePost(data.post));
+    dispatch(receivePost(data));
     return response;
 };
 

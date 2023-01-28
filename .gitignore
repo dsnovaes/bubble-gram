@@ -31,3 +31,6 @@
 # also
 .byebug_history
 .DS_Store
+
+# deploying
+/public

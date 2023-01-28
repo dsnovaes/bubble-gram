@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Header from "../Header"
@@ -7,15 +7,17 @@ import "./UserPage.css"
 import PostIndexItem from "../PostIndexItem"
 import ProfilePicture from '../ProfilePicture';
 import FollowButton from '../FollowButton';
+import Loading from "../Loading"
 
 const UserPage = () => {
     const {username} = useParams()
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         document.title=`${username} on BubbleGram`
-        dispatch(fetchUser(username));
+        dispatch(fetchUser(username)).then(() =>  setLoaded(true));
         return () => dispatch(removeUsers());
     }, [dispatch,username])
 
@@ -25,7 +27,12 @@ const UserPage = () => {
 
     // create logic to check private profile
     
-    if (user && posts) {
+
+    if(!loaded){
+        return (
+          <Loading />
+        )
+      } else { 
         return (
             <div className="container">
                 { sessionUser ?  <Header /> : <div></div> }

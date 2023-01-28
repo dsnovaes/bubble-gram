@@ -23,8 +23,8 @@
 }
 .currentUser {
     background:linear-gradient(107.16deg,#ec0d78 20.37%,#ff2b40 44.58%,#f75735 66.71%,#fe880e 86.77%,#fe880e 0);
-    border-top-right-radius: calc(var(--base-unit) * 2);
-    border-top-left-radius: calc(var(--base-unit) * 2);
+    border-top-right-radius: calc(var(--base-unit) * 2 - 1px);
+    border-top-left-radius: calc(var(--base-unit) * 2 - 1px);
 }
 .currentUser h2 {
     color: white;

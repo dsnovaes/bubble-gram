@@ -20,7 +20,7 @@ const Explore = () => {
             <Header />
             <div className="explorePage">
                 <div className="grid">
-                    {posts?.map(post => <PostIndexItem post={post} key={post.id}/>)}
+                    {posts?.reverse().map(post => <PostIndexItem post={post} key={post.id}/>)}
                 </div>
             </div>
         </div>

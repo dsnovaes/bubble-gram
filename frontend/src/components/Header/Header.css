@@ -14,7 +14,7 @@ header {
     border-right: 1px solid var(--color-border);
     position: fixed;
     display: grid;
-    grid-template-rows: calc(var(--base-unit) * 20) 1fr calc(var(--base-unit) * 20);
+    grid-template-rows: calc(var(--base-unit) * 20) 1fr calc(var(--base-unit) * 60);
 }
 
 .insideHeader img {
@@ -99,4 +99,20 @@ button.more:hover svg, button.more:hover span {
 }
 .morePopOver a:hover {
     background: var(--color-link);
+}
+li.github a:hover {
+    color: white;
+    background: #171515;
+}
+li.github a:hover svg {
+    fill: #39d353;
+    color: #39d353;
+}
+li.linkedin a:hover {
+    color: white;
+    background: #171515;
+}
+li.linkedin a:hover svg {
+    fill: #0A66C2;
+    color: #0A66C2;
 }

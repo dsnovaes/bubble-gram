@@ -127,3 +127,20 @@
     font-size: 80%;
     opacity: 0.5;
 }
+.icons {
+    text-align: center;
+    font-size: 80%;
+    color: var(--color-secondary-font);
+    line-height: 1.25;
+}
+.icons p {
+    margin-bottom: calc(var(--base-unit)*4);
+}
+.icons a {
+    margin: calc(var(--base-unit)*2);
+    transition: 0.25s all;
+}
+.icons a:hover {
+    color:var(--color-link);
+    transition: 0.25s all;
+}

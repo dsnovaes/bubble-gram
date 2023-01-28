@@ -1,6 +1,14 @@
+import React, { useEffect, useState } from 'react';
 import {FaComment,FaHeart} from "react-icons/fa"
+import Loading from "../Loading"
 
 const PostIndexItem = ({post}) => {
+    const [loaded, setLoaded] = useState(false);
+    if (!post) {
+        return (
+          <Loading />
+        )
+      } else {
     return (
         <div className="thumbnail">
             <a href={`/posts/${post.id}`}>
@@ -11,7 +19,7 @@ const PostIndexItem = ({post}) => {
                 <img src={post.mediaUrl} alt="thumbnail" />
             </a>
         </div>
-    )
+    ) }
 }
 
 export default PostIndexItem
