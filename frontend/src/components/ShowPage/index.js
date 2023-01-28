@@ -68,7 +68,7 @@ const ShowPage = () => {
                 <div>
                     <article className="showPage">
                         <figure>
-                            <img src={post.mediaUrl} alt="media" />
+                            <img src={post.mediaUrl} loading="lazy" alt="media" />
                         </figure>
                         <aside>
                             <div className="top">

@@ -5,7 +5,7 @@ const SuggestedUser = ({user}) => {
     <div className="suggestedUser">
         <a href={`/users/${user.username}`}>
             <div className="profile">
-                <img src={user.profilePictureUrl} alt={`/users/${user.username}`} />
+                <img src={user.profilePictureUrl} loading="lazy" alt={`/users/${user.username}`} />
             </div>
             <div className="text">
                 <h2>{user.username}</h2>

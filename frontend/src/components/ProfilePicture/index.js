@@ -3,7 +3,7 @@ const ProfilePicture = ({user}) => {
     if (user.profilePictureUrl) {
         
         return (
-            <img src={user.profilePictureUrl} alt={user.name} />
+            <img src={user.profilePictureUrl} loading="lazy" alt={user.name} />
         )
     } else {
         return (

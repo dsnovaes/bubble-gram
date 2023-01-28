@@ -22,7 +22,7 @@ const PostFeed = ({post}) => {
                 </div>
                 <div className="media">
                     <figure>
-                        <a href={`/posts/${post.id}`}><img src={post.mediaUrl} alt="media" /></a>
+                        <a href={`/posts/${post.id}`}><img src={post.mediaUrl} loading="lazy" alt="media" /></a>
                     </figure>
                 </div>
                 <div className="buttons">
