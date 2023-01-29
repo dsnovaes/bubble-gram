@@ -1,0 +1,39 @@
+.followModal .user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--base-unit) calc(var(--base-unit) * 2);
+}
+.followModal .user .left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+.followModal .user .left .username {
+    margin-left: calc(var(--base-unit) * 2);
+}
+.followModal .user img, .followModal .user svg {
+    width: calc(var(--base-unit)*10);
+    height: calc(var(--base-unit)*10);
+    border-radius: 50%;
+}
+.followModal .sessionUser {
+    display: none;
+}
+.followModal .user button {
+    background-color: var(--color-link);
+    color: white;
+    font-weight: bold;
+    border: 0;
+    padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 5);
+    border-radius: calc(var(--base-unit) * 2);
+}
+.followModal .user button.following {
+    background-color: var(--color-secondary-bg);
+    font-weight: normal;
+    color: var(--color-primary-font);
+}
+.followModal .user button svg {
+    display: none;
+}

@@ -1,7 +1,24 @@
 class Api::FollowsController < ApplicationController
-    wrap_parameters include: Follow.attribute_names + ["followingId", "followerId"]
+    wrap_parameters include: Follow.attribute_names + ["followingId", "followerId", "type", "username"]
 
     before_action :require_logged_in
+
+    def index
+        user = User.find_by(username: params[:username])
+        if params[:type] == "followers"
+            if user
+                @follows = user.followers
+            else
+                render json: { errors: @follows.errors.full_messages }, status: :unprocessable_entity
+            end
+        elsif params[:type] == "following"
+            if user
+                @follows = user.following
+            else
+                render json: { errors: @follows.errors.full_messages }, status: :unprocessable_entity
+            end
+        end
+    end
 
     def create
 

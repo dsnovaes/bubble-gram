@@ -95,7 +95,9 @@ a, button {
     cursor: pointer;
     color: var(--color-primary-font);
 }
-
+.clickable {
+    cursor: pointer;
+}
 body {
     background-color: var(--color-primary-bg);
     color: var(--color-primary-font);
