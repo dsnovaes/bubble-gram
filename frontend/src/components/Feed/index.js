@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, removePosts } from '../../store/posts'
-import { fetchUsers } from '../../store/users'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts, removePosts } from "../../store/posts"
+import { fetchUsers } from "../../store/users"
 import Header from "../Header"
 import PostFeed from "../PostFeed"
-import ProfilePicture from '../ProfilePicture';
-import SuggestedUser from '../SuggestedUser';
+import ProfilePicture from "../ProfilePicture";
+import SuggestedUser from "../SuggestedUser";
 import Loading from "../Loading"
 import "./Feed.css"
 
@@ -39,8 +39,24 @@ const Feed = () => {
                         <section className="timeline">
                             {posts.length ? (
                                 posts?.reverse().map(post => <PostFeed post={post} key={post.id}/>)
-                                ):("you should follow someone")
-                            }                            
+                                ):(
+                                    <div className="notFollowingAnyone">
+                                        <h1>Welcome to Bubblegram</h1>
+                                        <div className={sessionUser.profilePictureUrl ? "hasProfilePicture" : ""}>
+                                            <h2><span>Upload a profile picture</span></h2>
+                                            <p>Visit your <a href="/settings">settings</a> and upload a nice profile picture</p>
+                                        </div>
+                                        <div className={posts.length ? "isFollowingSomeone" : ""}>
+                                            <h2><span>Follow some interesting people</span></h2>
+                                            <p>Here is a selection of users we suggest you to follow</p>
+                                            <div className="suggested">
+                                                {users?.map(user => <SuggestedUser user={user} key={user.id} />)}
+                                            </div>
+                                            <p>Are you done? <a href="/">Refresh the page</a> to see posts.</p>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         </section>
                         <aside>
                             <div className="myProfile">
@@ -54,16 +70,18 @@ const Feed = () => {
                                     </div>
                                 </a>
                             </div>
+                            {users && 
                             <div className="suggestions">
                                 <h3>Suggestions for you</h3>
                                 {users?.map(user => <SuggestedUser user={user} key={user.id} />)}
                             </div>
+                            }
                             <footer>
                                 <p>Disclaimer: assets and the general idea of this product is either property of Meta© and/or inspired on Instagram©</p>
                                 <p>This product was built for educational purposes only by Diego Novaes.</p>
                                 <ul>
-                                    <li><a href="https://github.com/dsnovaes/bubble-gram">About this project on Github</a></li>
-                                    <li><a href="https://linkedin.com/in/diegonovaes">LinkedIn of Diego Novaes</a></li>
+                                    <li><a href="https://github.com/dsnovaes/bubble-gram" target="_blank">About this project on Github</a></li>
+                                    <li><a href="https://linkedin.com/in/diegonovaes" target="_blank">LinkedIn of Diego Novaes</a></li>
                                 </ul>
                             </footer>
                         </aside>

@@ -150,10 +150,124 @@
     height: auto;
 }
 
-
 .feed .likesCount {
     padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 4);
 }
+
+.feed .notFollowingAnyone {
+    background-color: var(--color-secondary-bg);
+    border:1px solid var(--color-border);
+    border-radius: var(--base-unit);
+    padding: calc(var(--base-unit)*8);
+}
+.feed .notFollowingAnyone h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 200%;
+    margin-bottom: calc(var(--base-unit)*7);
+}
+.feed .notFollowingAnyone h2 {
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: calc(var(--base-unit)*2);
+}
+.feed .notFollowingAnyone h2:before {
+    content: "→ ";
+}
+.feed .notFollowingAnyone p a {
+    color: var(--color-link);
+    text-decoration: underline;
+}
+.feed .notFollowingAnyone .hasProfilePicture h2 span, .feed .notFollowingAnyone .hasProfilePicture p, .feed .notFollowingAnyone .isFollowingSomeone h2 span, .feed .notFollowingAnyone .isFollowingSomeone p {
+    text-decoration: line-through;
+    color: var(--color-secondary-font);
+}
+.feed .notFollowingAnyone button.done {
+    display: none;
+    background-color: var(--color-link);
+    color: white;
+    font-weight: bold;
+    border-radius: calc(var(--base-unit)*2);
+    border: 0;
+    margin: 0 auto;
+    padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 5);
+    
+}
+.feed .notFollowingAnyone button.done:hover {
+    opacity: 0.75;
+}
+.feed .notFollowingAnyone .isFollowingSomeone button.done {
+    display: block;
+}
+.feed .notFollowingAnyone .hasProfilePicture h2:before, .feed .notFollowingAnyone .isFollowingSomeone h2:before {
+    content: "✅ ";
+}
+.feed .notFollowingAnyone .hasProfilePicture p a {
+    color: var(--color-secondary-fontfont);
+    text-decoration: none;
+}
+.feed .notFollowingAnyone p {
+    margin-bottom: calc(var(--base-unit)*5);
+    color: var(--color-secondary-font);
+}
+.feed .notFollowingAnyone .suggested {
+    display: flex;
+    justify-content: space-between;
+    column-gap: calc(var(--base-unit)*4);
+    margin-bottom: calc(var(--base-unit)*5);
+}
+.feed .notFollowingAnyone .suggested img {
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: calc(var(--base-unit)*2);
+}
+.feed .notFollowingAnyone .suggested .suggestedUser {
+    flex: 1 1 0px;
+    padding: calc(var(--base-unit)*3) 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--base-unit);
+    text-align: center;
+}
+.feed .notFollowingAnyone .suggested .suggestedUser h2::before {
+    content: "";
+}
+.feed .notFollowingAnyone .suggested .suggestedUser h2 {
+    font-size: 90%;
+}
+.feed .notFollowingAnyone .suggested .suggestedUser h3 {
+    font-size: 80%;
+    margin-bottom: calc(var(--base-unit)*2);
+}
+.feed .notFollowingAnyone .suggested .suggestedUser a {
+    text-decoration: none;
+}
+.feed .notFollowingAnyone .suggested .suggestedUser button {
+    background-color: var(--color-link);
+    color: white;
+    border:none;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 5);
+    border-radius: calc(var(--base-unit) * 2);
+    margin: 0 auto;
+}
+.feed .notFollowingAnyone .suggested .suggestedUser button svg {
+    height: calc(var(--base-unit) * 4);
+    width: auto;
+    margin-left: calc(var(--base-unit) * 2);
+}
+.feed .notFollowingAnyone .suggested .suggestedUser button:hover {
+    opacity: 0.75;
+}
+
+.feed .notFollowingAnyone .suggested .suggestedUser button.following {
+    background-color: var(--color-secondary-bg);
+    border:1px solid var(--color-border);
+    color: var(--color-primary-font);
+}
+
 .caption {
     color: var(--color-primary-font);
     padding: calc(var(--base-unit) * 1) calc(var(--base-unit) * 4);
@@ -215,6 +329,8 @@
 footer {
     font-size: 80%;
     margin-top: calc(var(--base-unit) * 10);
+    position: sticky;
+    top: calc(var(--base-unit)*8);
 }
 footer a, footer p {
     color: var(--color-secondary-font);

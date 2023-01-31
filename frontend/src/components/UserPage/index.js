@@ -52,8 +52,8 @@ const UserPage = () => {
                             </div>
                             <div className="numbers">
                                 <div><strong>{user.postIds.length}</strong> posts</div>
-                                <div className="clickable" onClick={toggleFollowersModal}><strong>{user.followerIds.length}</strong> followers</div>
-                                <div className="clickable"><strong>{user.followingIds.length}</strong> following</div>
+                                <div><strong>{user.followerIds.length}</strong> followers</div>
+                                <div><strong>{user.followingIds.length}</strong> following</div>
                             </div>
                             <div className="">
                                 <h2>{user.name}</h2>
