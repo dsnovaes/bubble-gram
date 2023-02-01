@@ -81,7 +81,7 @@ const ShowPage = () => {
                                 { !post_user.followed && (
                                 <FollowButton user={post_user} /> )}
                             </div>
-                            {!comments.length || !post.caption ? (
+                            {!comments.length && !post.caption ? (
                                 <div className="empty">
                                     <h2>No comments yet.</h2>
                                     <h3>Start the conversation.</h3>
