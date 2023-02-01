@@ -81,9 +81,14 @@ const ShowPage = () => {
                                 { !post_user.followed && (
                                 <FollowButton user={post_user} /> )}
                             </div>
+                            {!comments.length || !post.caption ? (
+                                <div className="empty">
+                                    <h2>No comments yet.</h2>
+                                    <h3>Start the conversation.</h3>
+                                </div>
+                                ) : (
                             <div className="comments">
-                                {/* first comment is the caption */}
-
+                                {post.caption && 
                                 <div className="comment">
                                     <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
                                     <div>
@@ -91,7 +96,7 @@ const ShowPage = () => {
                                         { sessionUser.id === post.userId && ( <p><button onClick={()=>setShowModal(true)}>Edit caption</button> <button onClick={()=>handleDelete(post.id)}>Delete post</button></p> ) }
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>
-                                </div>
+                                </div>}
 
                                 {showModal && (
                                     <Modal onClose={() => setShowModal(false)}>
@@ -103,6 +108,7 @@ const ShowPage = () => {
                                 {comments?.map(comment => <ViewComment comment={comment} key={comment.id}/>)}
 
                             </div>
+                            )}
                             <div className="more">
 
                                 <div className="buttons">
