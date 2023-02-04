@@ -14,8 +14,8 @@ function Settings() {
   const sessionUser = useSelector(state => state.session.user);
   const [email, setEmail] = useState(sessionUser.email);
   const [username, setUsername] = useState(sessionUser.username);
-  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState(sessionUser.name);
   const [bio, setBio] = useState(sessionUser.bio);
   const [privateProfile, setPrivateProfile] = useState(sessionUser.private_profile);
@@ -31,7 +31,7 @@ function Settings() {
   const [saveBtnLabel,setSaveBtnLabel] = useState("Save");
   const history = useHistory();
 
-
+  const demoUser = sessionUser.id===1
 
   useEffect(()=>{
       if (newProfilePicture!=="") {
@@ -79,9 +79,15 @@ function Settings() {
 
     } else if (tab==="personalInfo") {
       setSaveBtnLabel("Saving")
+      
+      let newEmail = email
+      if (demoUser) {
+        if (newEmail !== "demo@user.io") { alert("The email of the demo user must remain demo@user.io") }
+        newEmail = "demo@user.io"
+      }
       let user = {
         id: sessionUser.id,
-        email,
+        email: newEmail,
         name,
         username,
         bio
@@ -90,11 +96,14 @@ function Settings() {
         setSaveBtnLabel("Save")
         storeCurrentUser(user);
         dispatch(setCurrentUser(user));
-        history.push(`/users/${sessionUser.username}`)
+        history.push(`/users/${username}`)
       })
 
 
     } else if (tab==="password") {
+      if (demoUser) {
+        alert("Not allowed to change the password of the demo user")
+      } else {
       setSaveBtnLabel("Saving")
       let user = {
         id: sessionUser.id,
@@ -109,6 +118,7 @@ function Settings() {
         dispatch(setCurrentUser(user));
         history.push(`/users/${sessionUser.username}`)
       })
+    }
 
     }
   }
@@ -201,6 +211,7 @@ function Settings() {
 
           { tab === "personalInfo" && (
             <form onSubmit={handleSubmit}>
+              {demoUser && (<div className="demoUser">The email of the demo user can't be changed</div>)}
               <label htmlFor="email">Change your email</label>
               <input
               type="text"
@@ -209,6 +220,7 @@ function Settings() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               required
+              disabled={ demoUser ? "disabled" : null }
               />
               <label htmlFor="username">Change your username</label>
               <input
@@ -245,15 +257,7 @@ function Settings() {
 
           { tab === "password" && (
             <form onSubmit={handleSubmit}>
-              <label htmlFor="password">Current password</label>
-              <input
-              type="password"
-              name="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              placeholder="Type your current password"
-              required
-              />
+              {demoUser && (<div className="demoUser">This feature is not available for the demo user</div>)}
               <label htmlFor="password">New password</label>
               <input
               type="password"
@@ -262,11 +266,22 @@ function Settings() {
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="New password (min. 6 characters)"
               required
+              disabled={ demoUser ? "disabled" : null }
+              />
+              <label htmlFor="confirmPassword">Confirm new password</label>
+              <input
+              type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Type password again to confirm"
+              required
+              disabled={ demoUser ? "disabled" : null }
               />
               <ul>
               {errors.map(error => <li key={error}>{error}</li>)}
               </ul>
-              <button type="submit" disabled={ currentPassword && newPassword ? null : "disabled" }>{saveBtnLabel}</button>
+              <button type="submit" disabled={ confirmPassword.length >= 6 && confirmPassword === newPassword && !demoUser ? null : "disabled" }>{saveBtnLabel}</button>
             </form> 
           )}
 

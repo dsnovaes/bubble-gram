@@ -98,7 +98,8 @@
     border-radius: 50%;
     width: calc(var(--base-unit) * 9);
     margin-right: calc(var(--base-unit)*2);
-    height: auto;
+    height: calc(var(--base-unit) * 9);
+    object-fit: cover;
 }
 .polaroid figure img {
     width: 100%;

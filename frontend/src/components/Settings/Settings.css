@@ -76,7 +76,7 @@
     margin-bottom: calc(var(--base-unit)*4);
     transition: 0.25s all;
 }
-.settings button:disabled {
+.settings button:disabled, .settings input:disabled {
     opacity: 0.5;
     cursor:not-allowed;
 }
@@ -133,6 +133,14 @@
 }
 .settings button.reset:hover {
     background-color: var(--color-primary-bg);
+}
+.settings .demoUser {
+    background-color: yellow;
+    color: black;
+    border: 1px solid black;
+    margin-bottom: calc(var(--base-unit)*8);
+    padding: calc(var(--base-unit)*4);
+    border-radius: var(--base-unit);
 }
 
 @media screen and (max-width: 1100px) {

@@ -14,6 +14,7 @@ import ViewComment from '../ViewComment';
 import FollowButton from "../FollowButton"
 import { Modal } from '../Modal/Modal';
 import EditCaption from '../Modal/EditCaption';
+import {SlOptions} from "react-icons/sl"
 
 const ShowPage = () => {
     const {postId} = useParams()
@@ -22,6 +23,27 @@ const ShowPage = () => {
     const comments = useSelector(state => state.comments ? Object.values(state.comments) : []);
     const posts = useSelector(state => state.posts ? Object.values(state.posts) : []);
     const [showModal, setShowModal] = useState(false);
+    const [showOptions,setShowOptions] = useState(false);
+    useEffect(() => {
+        console.log("change in the modal state",showModal)
+    },[showModal])
+
+    const openOptions = () => {
+        if (showOptions) return;
+        setShowOptions(true);
+    };
+    
+    useEffect(() => {
+        if (!showOptions) return;
+
+        const closeOptions = () => {
+            setShowOptions(false);
+        };
+
+        document.addEventListener('click', closeOptions);
+    
+        return () => document.removeEventListener("click", closeOptions);
+    }, [showOptions]);
     
     const post = posts.find(post => post.id === postIdInt);
     const post_user = posts[1]
@@ -31,13 +53,18 @@ const ShowPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPost(postIdInt));
-        return () => dispatch(removePosts());
-    }, [dispatch,postId,postIdInt])
-
-    useEffect(() => {
-        dispatch(fetchComments(postIdInt));
-        return () => dispatch(removeComments());
+        try {
+            dispatch(fetchPost(postIdInt))
+            dispatch(fetchComments(postIdInt));
+        }
+        catch(err) {
+            alert("error");
+            console.error(err)
+        }
+        return () => {
+            dispatch(removePosts());
+            dispatch(removeComments());
+        }
     }, [dispatch,postId,postIdInt])
 
 
@@ -51,15 +78,7 @@ const ShowPage = () => {
         }
     }
 
-    const handleClick = () => {
-        setShowModal(true)
-        if (showModal) alert("about modal / modal should be open now");
-        // console.log("value of showModal:",showModal)
-    }
-
     if (!sessionUser && post_user?.privateProfile) return <Redirect to="/login" />; 
-
-    // if (!post) return <Redirect to={`/posts`} />
 
     if (post && comments) {
         return (
@@ -78,13 +97,28 @@ const ShowPage = () => {
                                     </div>
                                     <h2>{post_user.username}</h2>
                                 </a>
-                                { !post_user.followed && (
-                                <FollowButton user={post_user} /> )}
+                                { post_user.id !== sessionUser.id ? (
+                                <FollowButton user={post_user} /> ) : (
+                                    <button onClick={openOptions} className="optionsBtn"><SlOptions /></button>
+                                )}
+                                {showOptions && (
+                                    <div className="postOptions">
+                                        <ul>
+                                            <li>
+                                                <a onClick={()=>setShowModal(true)}>{!post.caption ? ("Create"):("Edit")} caption</a>
+                                            </li>
+                                            <li>
+                                                <a onClick={()=>handleDelete(post.id)}>Delete post</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                             {!comments.length && !post.caption ? (
                                 <div className="empty">
                                     <h2>No comments yet.</h2>
                                     <h3>Start the conversation.</h3>
+                                    {sessionUser.id === post.userId && !post.caption.length && ( <button onClick={()=>setShowModal(true)}>Create a caption</button> )}
                                 </div>
                                 ) : (
                             <div className="comments">
@@ -93,24 +127,22 @@ const ShowPage = () => {
                                     <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
                                     <div>
                                         <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption} { new Date(post.createdAt).toISOString().split('.')[0] !== new Date(post.updatedAt).toISOString().split('.')[0] && ( <small>(edited)</small> ) }</p>
-                                        { sessionUser.id === post.userId && ( <p><button onClick={()=>setShowModal(true)}>Edit caption</button> <button onClick={()=>handleDelete(post.id)}>Delete post</button></p> ) }
+                                        { sessionUser.id === post.userId && ( <p><button onClick={()=>setShowModal(true)}>Edit caption</button></p> ) }
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>
                                 </div>}
 
-                                {showModal && (
-                                    <Modal onClose={() => setShowModal(false)}>
-                                        <EditCaption post={post} setShowModal={setShowModal} />
-                                    </Modal>
-                                )}
-
-                                {/* loop actual comments */}
                                 {comments?.map(comment => <ViewComment comment={comment} key={comment.id}/>)}
 
                             </div>
                             )}
-                            <div className="more">
 
+                            {showModal && (
+                                <Modal onClose={() => setShowModal(false)}>
+                                    <EditCaption post={post} setShowModal={setShowModal} />
+                                </Modal>
+                            )}
+                            <div className="more">
                                 <div className="buttons">
                                     <LikeButton post={post} />
                                     <button className="commentBtn"><svg aria-label="Comment" color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></path></svg></button>
@@ -125,7 +157,7 @@ const ShowPage = () => {
                     <div className="related">
                         <h3>More from <strong><a href={`/users/${post_user.username}`}>{post_user.username}</a></strong></h3>
                         <div className="grid">
-                            {related?.map(relatedPost => <PostIndexItem post={relatedPost} key={relatedPost.id}/>)}
+                            {related?.reverse().map(relatedPost => <PostIndexItem post={relatedPost} key={relatedPost.id}/>)}
                         </div>
                     </div> )}
                 </div>

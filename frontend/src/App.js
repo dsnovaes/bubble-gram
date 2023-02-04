@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Explore from "./components/Explore";
@@ -9,6 +9,7 @@ import Feed from "./components/Feed"
 import Create from "./components/Create"
 import UserPage from "./components/UserPage"
 import Settings from "./components/Settings"
+import Page404 from "./components/Page404";
 
 
 function App() {
@@ -38,14 +39,16 @@ function App() {
             <LoginFormPage />
           </Route>
           { sessionUser ? 
-          <Route path="/">
+          <Route exact path="/">
             <Feed />
           </Route>
           :
-          <Route path="/">
+          <Route exact path="/">
             <LoginFormPage />
           </Route>
           }
+          <Route path="/error" component={Page404}/>
+          <Redirect to="/error"/>
         </Switch>
     </>
   );

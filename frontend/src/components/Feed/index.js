@@ -21,7 +21,11 @@ const Feed = () => {
         document.title="Feed - BubbleGram"
         dispatch(fetchPosts(sessionUser.id, "feed"))
             .then(() =>  setLoaded(true))
-            .then(()=>window.scrollTo(0,0))
+            .then(()=>window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            })
+        )
         dispatch(fetchUsers("suggestions"))
         return () => dispatch(removePosts());
     }, [dispatch,sessionUser.id])

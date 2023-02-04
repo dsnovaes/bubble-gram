@@ -26,9 +26,9 @@ class Api::PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
-        @user = @post.user
-        @related = Post.where('user_id = ? AND id != ?', @post.user_id, params[:id]).order(created_at: :desc).limit(6)
         if @post
+            @user = @post.user
+            @related = Post.where('user_id = ? AND id != ?', @post.user_id, params[:id]).order(created_at: :desc).limit(6)
             if !@post.user.private_profile || @post.user.followers.include?(current_user) || @post.user == current_user
                 render :show
             else

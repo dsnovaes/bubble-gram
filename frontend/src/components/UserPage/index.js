@@ -64,7 +64,7 @@ const UserPage = () => {
                     { (sessionUser.id === user.id || user.followingIds.includes(sessionUser.id) || !user.privateProfile) ? (
                     <div className="grid">
                         { posts.length ? (
-                            posts.map(post => <PostIndexItem post={post} key={post.id}/>)
+                            posts.reverse().map(post => <PostIndexItem post={post} key={post.id}/>)
                         ) : 
                         <div className="privateProfile">
                             <h2>No posts yet</h2>

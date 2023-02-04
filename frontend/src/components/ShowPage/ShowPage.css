@@ -31,6 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 .showPage aside .top button {
     background-color: transparent;
@@ -50,7 +51,8 @@
 .showPage aside .top a img {
     border-radius: 50%;
     width: calc(var(--base-unit) * 9);
-    height: auto;
+    height: calc(var(--base-unit) * 9);
+    object-fit: cover;
 }
 .showPage aside .top a h2 {
     font-size:90%;
@@ -88,6 +90,7 @@
     border-radius: 50%;
     width: calc(var(--base-unit) * 9);
     height: auto;
+    object-fit: cover;
 }
 .showPage aside .comment p {
     margin-bottom: var(--base-unit);
@@ -142,8 +145,37 @@
     margin-top: calc(var(--base-unit)*2);
     color: var(--color-secondary-font);
 }
+.showPage aside .empty button {
+    border:0;
+    background-color: var(--color-link);
+    color: white;
+    font-weight: bold;
+    padding: calc(var(--base-unit) * 2) calc(var(--base-unit) * 5);
+    border-radius: calc(var(--base-unit) * 2);
+    margin-top: calc(var(--base-unit) * 5);
+    font-size: 90%;
+}
 
-
+.showPage aside .top .postOptions {
+    position: absolute;
+    top: calc(var(--base-unit) * 10);
+    right: calc(var(--base-unit) * 2);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-secondary-bg);
+    border-radius: calc(var(--base-unit) * 2);
+    width: max-content;
+    padding: calc(var(--base-unit) * 2);
+    z-index: 1010;
+}
+.showPage .postOptions a {
+    justify-content: flex-end;
+    padding: calc(var(--base-unit) * 3);
+    border-radius: calc(var(--base-unit) * 2);
+}
+.showPage .postOptions a:hover {
+    background-color: var(--color-link);
+    color: white;
+}
 .related {
     border-top: 1px solid var(--color-border);
     margin: 0 auto;

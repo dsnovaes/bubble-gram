@@ -46,7 +46,8 @@
 }
 .feed aside .profile img, .feed aside .profile svg {
     width: calc(var(--base-unit)*18);
-    height: auto;
+    height: calc(var(--base-unit)*18);
+    object-fit: cover;
 }
 .feed aside .suggestedUser {
     display: flex;
