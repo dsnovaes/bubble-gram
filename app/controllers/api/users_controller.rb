@@ -5,6 +5,8 @@ class Api::UsersController < ApplicationController
 
     def index
         case params[:type]
+        when "all"
+            @users = User.all
         when "query"
             @users = User.where("username LIKE ?", params[:query])
         when "suggestions"

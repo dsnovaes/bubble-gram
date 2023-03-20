@@ -69,3 +69,13 @@
     border: 1px solid var(--color-border);
     padding: calc(var(--base-unit)*20) 0;
 }
+.userPage .empty {
+    padding-top: calc(var(--base-unit) * 8);
+    border-top: 1px solid var(--color-border);
+    width: 935px;
+}
+.userPage .empty h4 {
+    font-size: calc(var(--base-unit)*8);
+    font-weight: 800;
+    text-align: center;
+}

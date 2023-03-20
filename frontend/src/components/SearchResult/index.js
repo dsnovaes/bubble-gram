@@ -2,7 +2,7 @@ import ProfilePicture from "../ProfilePicture"
 const SearchResult = ({user}) => {
     return (
         <li>
-            <a href={`/users/${user.username}`}> 
+            <a href={`/users/${user.username}`} title={`${user.postIds.length} posts`}> 
                 <ProfilePicture user={user} /> 
                 <div>
                     <p>{user.username}</p>

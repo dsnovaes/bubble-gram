@@ -1,0 +1,38 @@
+.activity {
+    margin: calc(var(--base-unit) * 10) auto;
+    width:500px;
+}
+.activity h1 {
+    font-weight: bold;
+    font-size: 200%;
+    margin-bottom: calc(var(--base-unit)*7);
+}
+.activity ul.results {
+    padding-top: calc(var(--base-unit)*2);
+}
+.activity ul.results h3 {
+    font-weight: bold;
+    padding: calc(var(--base-unit)*4);
+}
+.activity ul.results li a {
+    display: flex;
+    padding: calc(var(--base-unit)*4);
+    font-weight: bold;
+    color: var(--color-primary-font);
+    align-items: center;
+    font-size: 90%;
+}
+.activity ul.results li a small {
+    font-weight: normal;
+    color: var(--color-secondary-font);
+}
+.activity ul.results li a:hover {
+    background-color: var(--color-primary-bg);
+}
+.activity ul.results li img, .activity ul.results li svg {
+    width: calc(var(--base-unit)*10);
+    height: calc(var(--base-unit)*10);
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: calc(var(--base-unit)*2);
+}

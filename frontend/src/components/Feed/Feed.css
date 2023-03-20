@@ -65,7 +65,8 @@
 }
 .feed aside .suggestions img {
     width: calc(var(--base-unit)*10);
-    height: auto;
+    height: calc(var(--base-unit)*10);
+    object-fit: cover;
 }
 .feed aside .myProfile a, .feed aside .suggestedUser a {
     font-size: 90%;
@@ -148,7 +149,8 @@
     margin-right: calc(var(--base-unit) * 2);
     border-radius: 50%;
     width: calc(var(--base-unit) * 10);
-    height: auto;
+    height: calc(var(--base-unit) * 10);
+    object-fit: cover;
 }
 
 .feed .likesCount {

@@ -10,6 +10,7 @@ import Create from "./components/Create"
 import UserPage from "./components/UserPage"
 import Settings from "./components/Settings"
 import Page404 from "./components/Page404";
+import Activity from "./components/Activity";
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/create">
             <Create />
+          </Route>
+          <Route exact path="/activity">
+            <Activity />
           </Route>
           <Route exact path="/posts">
             <Explore />

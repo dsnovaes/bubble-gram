@@ -55,25 +55,23 @@ const UserPage = () => {
                                 <div><strong>{user.followerIds.length}</strong> followers</div>
                                 <div><strong>{user.followingIds.length}</strong> following</div>
                             </div>
-                            <div className="">
+                            <div>
                                 <h2>{user.name}</h2>
                                 <p>{user.bio}</p>
                             </div>
                         </div>
                     </div>
-                    { (sessionUser.id === user.id || user.followingIds.includes(sessionUser.id) || !user.privateProfile) ? (
-                    <div className="grid">
+                    
                         { posts.length ? (
-                            posts.reverse().map(post => <PostIndexItem post={post} key={post.id}/>)
-                        ) : 
-                        <div className="privateProfile">
-                            <h2>No posts yet</h2>
-                        </div> }
-                    </div>
-                    ) : 
-                    <div className="privateProfile">
-                    <p>This Account is Private</p>
-                    <p>Follow to see their photos and videos.</p> </div> }
+                            <div className="grid">
+                                {posts.reverse().map(post => <PostIndexItem post={post} key={post.id}/>)}
+                            </div>
+                        ) : (
+                        <div className="empty">
+                            <h4>No posts yet</h4>
+                        </div> 
+                        )}
+                    
                 </div>
 
                 {showModal && (

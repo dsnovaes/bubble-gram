@@ -83,6 +83,7 @@ const Feed = () => {
                             <footer>
                                 <p>Disclaimer: assets and the general idea of this product is either property of Meta© and/or inspired on Instagram©</p>
                                 <p>This product was built for educational purposes only by Diego Novaes.</p>
+                                <p>I use Google Analytics to analyze traffic. By navigating, you consent to Google's use of cookies.</p>
                                 <ul>
                                     <li><a href="https://github.com/dsnovaes/bubble-gram" target="_blank">About this project on Github</a></li>
                                     <li><a href="https://linkedin.com/in/diegonovaes" target="_blank">LinkedIn of Diego Novaes</a></li>
