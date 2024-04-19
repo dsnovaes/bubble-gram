@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import moment from 'moment';
 import ProfilePicture from '../ProfilePicture';
 import { useDispatch, useSelector } from 'react-redux';
+import {NavLink} from "react-router-dom"
 import {deleteComment} from "../../store/comments"
 import { Modal } from '../Modal/Modal';
 import EditComment from '../Modal/EditComment';
@@ -20,9 +21,9 @@ const ViewComment = ({comment}) => {
     if (comment) {
         return (
             <div className="comment">
-                <a href={`/users/${comment.user.username}`}><ProfilePicture user={comment.user} /></a>
+                <NavLink to={`/users/${comment.user.username}`}><ProfilePicture user={comment.user} /></NavLink>
                 <div>
-                    <p><a href={`/users/${comment.user.username}`}><strong>{comment.user.username}</strong></a> {comment.body} { comment.createdAt !== comment.updatedAt && ( <small>(edited)</small> ) } </p>
+                    <p><NavLink to={`/users/${comment.user.username}`}><strong>{comment.user.username}</strong></NavLink> {comment.body} { comment.createdAt !== comment.updatedAt && ( <small>(edited)</small> ) } </p>
                     { sessionUser.id === comment.user.id && ( <p><button onClick={()=>setShowModal(true)}>Edit</button> <button onClick={()=>handleDelete(comment.id)}>Delete</button></p> ) }
                     <p><time title={new Date(comment.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(comment.createdAt).fromNow()}</time></p>
                 </div>

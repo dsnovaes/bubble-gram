@@ -1,6 +1,7 @@
 import ProfilePicture from "../ProfilePicture"
 import NewComment from "../NewComment"
 import { useSelector } from 'react-redux';
+import {NavLink} from "react-router-dom"
 import moment from 'moment';
 import LikeButton from "../Like"
 
@@ -13,16 +14,16 @@ const PostFeed = ({post}) => {
         return (
             <div className="post">
                 <div className={`top ${currentClass}`}>
-                    <a href={`/users/${post.username}`}>
+                    <NavLink to={`/users/${post.username}`}>
                         <div className="profile">
                             <ProfilePicture user={post.user} />
                         </div>
                         <h2>{post.username}</h2>
-                    </a>
+                    </NavLink>
                 </div>
                 <div className="media">
                     <figure>
-                        <a href={`/posts/${post.id}`}><img src={post.mediaUrl} loading="lazy" alt="media" /></a>
+                        <NavLink to={`/posts/${post.id}`}><img src={post.mediaUrl} loading="lazy" alt="media" /></NavLink>
                     </figure>
                 </div>
                 <div className="buttons">
@@ -31,11 +32,11 @@ const PostFeed = ({post}) => {
                 </div>  
                 <div className="likesCount">{post.reactionIds.length} like{post.reactionIds.length !== 1 ? "s" : null }</div>
                 <div className="caption">
-                    <p><a href={`/users/${post.username}`}><strong>{post.username}</strong></a> {post.caption}</p>
+                    <p><NavLink to={`/users/${post.username}`}><strong>{post.username}</strong></NavLink> {post.caption}</p>
                 </div>
                 { post.commentIds.length > 0 &&
                     <div className="viewComments">
-                        { post.commentIds.length === 1 ? <p><a href={`/posts/${post.id}`}>View comment</a></p> : <p><a href={`/posts/${post.id}`}>View all {post.commentIds.length} comments</a></p> }
+                        { post.commentIds.length === 1 ? <p><NavLink to={`/posts/${post.id}`}>View comment</NavLink></p> : <p><NavLink to={`/posts/${post.id}`}>View all {post.commentIds.length} comments</NavLink></p> }
                     </div>
                 }
                 <div className="date">

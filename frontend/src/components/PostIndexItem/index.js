@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {FaComment,FaHeart} from "react-icons/fa"
+import {NavLink} from "react-router-dom"
 import Loading from "../Loading"
 
 const PostIndexItem = ({post}) => {
@@ -11,13 +12,13 @@ const PostIndexItem = ({post}) => {
       } else {
     return (
         <div className="thumbnail">
-            <a href={`/posts/${post.id}`}>
+            <NavLink to={`/posts/${post.id}`}>
                 <div className="hoverInfo">
                     <div><FaHeart />{post.reactionIds.length}</div>
                     <div><FaComment /> {post.commentIds.length}</div>
                 </div>
                 <img src={post.mediaUrl} loading="lazy" alt="thumbnail" />
-            </a>
+            </NavLink>
         </div>
     ) }
 }

@@ -2,7 +2,20 @@ class Api::SessionsController < ApplicationController
 
   before_action :require_logged_in, only: [:destroy]
 
+
+  puts "#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
+  puts
+  puts "entrou no session controler"
+  puts
+  puts "#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
+
+
   def show
+    puts "#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
+    puts
+    puts "[GET] session controler"
+    puts
+    puts "#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     if current_user
       @user = current_user
       render 'api/users/show'
@@ -12,6 +25,11 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
+    puts "#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
+    puts
+    puts "[POST] session controler"
+    puts
+    puts "#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#"
     @user = User.find_by_credentials(params[:credential], params[:password])
 
     if @user

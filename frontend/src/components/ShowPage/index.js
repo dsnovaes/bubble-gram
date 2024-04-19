@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { Redirect, useParams, useHistory, NavLink } from 'react-router-dom';
 import { fetchPost, removePosts, updatePost, deletePost } from '../../store/posts'
 import { fetchComments, removeComments } from '../../store/comments'
 import './ShowPage.css'
@@ -91,12 +91,12 @@ const ShowPage = () => {
                         </figure>
                         <aside>
                             <div className="top">
-                                <a href={`/users/${post_user.username}`}>
+                                <NavLink to={`/users/${post_user.username}`}>
                                     <div className="profile">
                                         <ProfilePicture user={post_user} />
                                     </div>
                                     <h2>{post_user.username}</h2>
-                                </a>
+                                </NavLink>
                                 { post_user.id !== sessionUser.id ? (
                                 <FollowButton user={post_user} /> ) : (
                                     <button onClick={openOptions} className="optionsBtn"><SlOptions /></button>
@@ -118,15 +118,15 @@ const ShowPage = () => {
                                 <div className="empty">
                                     <h2>No comments yet.</h2>
                                     <h3>Start the conversation.</h3>
-                                    {sessionUser.id === post.userId && !post.caption.length && ( <button onClick={()=>setShowModal(true)}>Create a caption</button> )}
+                                    {sessionUser.id === post.userId && !post.caption?.length && ( <button onClick={()=>setShowModal(true)}>Create a caption</button> )}
                                 </div>
                                 ) : (
                             <div className="comments">
                                 {post.caption && 
                                 <div className="comment">
-                                    <a href={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></a>
+                                    <NavLink to={`/users/${post_user.username}`}><ProfilePicture user={post_user} /></NavLink>
                                     <div>
-                                        <p><a href={`/users/${post_user.username}`}><strong>{post_user.username}</strong></a> {post.caption} { new Date(post.createdAt).toISOString().split('.')[0] !== new Date(post.updatedAt).toISOString().split('.')[0] && ( <small>(edited)</small> ) }</p>
+                                        <p><NavLink to={`/users/${post_user.username}`}><strong>{post_user.username}</strong></NavLink> {post.caption} { new Date(post.createdAt).toISOString().split('.')[0] !== new Date(post.updatedAt).toISOString().split('.')[0] && ( <small>(edited)</small> ) }</p>
                                         { sessionUser.id === post.userId && ( <p><button onClick={()=>setShowModal(true)}>Edit caption</button></p> ) }
                                         <p><time title={new Date(post.createdAt).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}) }>{moment(post.createdAt).fromNow()}</time></p>
                                     </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {NavLink} from "react-router-dom"
 import { fetchPosts, removePosts } from "../../store/posts"
 import { fetchUsers } from "../../store/users"
 import Header from "../Header"
@@ -64,7 +65,7 @@ const Feed = () => {
                         </section>
                         <aside>
                             <div className="myProfile">
-                                <a href={`/users/${sessionUser.username}`}>
+                                <NavLink to={`/users/${sessionUser.username}`}>
                                     <div className="profile">
                                         <ProfilePicture user={sessionUser} />
                                     </div>
@@ -72,7 +73,7 @@ const Feed = () => {
                                         <h2>{sessionUser.username}</h2>
                                         <h3>{sessionUser.name}</h3>
                                     </div>
-                                </a>
+                                </NavLink>
                             </div>
                             {users && 
                             <div className="suggestions">
